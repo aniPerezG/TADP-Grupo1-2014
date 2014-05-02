@@ -1,0 +1,2 @@
+class ConflictoTraitException < Exception
+end

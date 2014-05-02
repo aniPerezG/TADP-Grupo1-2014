@@ -9,4 +9,11 @@ describe 'Usando Traits' do
     o.metodo2(3).should == 42
   end
 
+  it 'Una clase suma dos traits y los usa' do
+    conflicto =  Conflicto.new
+    conflicto.metodo2(84).should == 42
+    conflicto.metodo3.should == "mundo"
+    expect {conflicto.metodo1}.to raise_error(ConflictoTraitException)
+  end
+
 end

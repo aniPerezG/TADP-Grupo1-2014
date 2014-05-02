@@ -12,6 +12,18 @@ Trait.define :MiTrait do
 
 end
 
+Trait.define :MiOtroTrait do
+
+  method :metodo1 do
+    "kawuabonga"
+  end
+
+  method :metodo3 do
+    "mundo"
+  end
+
+end
+
 class MiClase
 
   uses MiTrait
@@ -19,5 +31,12 @@ class MiClase
   def metodo1
     "mundo"
   end
+
+end
+
+class Conflicto
+
+  uses MiTrait + MiOtroTrait
+
 
 end

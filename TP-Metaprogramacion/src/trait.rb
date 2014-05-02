@@ -1,8 +1,14 @@
+require '../src/no_resolvedor'
+
 class Trait
 
-  attr_accessor :metodos
+  attr_accessor :metodos, :criterio_de_resolucion_conflictos
 
   # METODOS DE INSTANCIA
+
+    def initialize
+      self.criterio_de_resolucion_conflictos= NoResolvedor.new
+    end
 
     def method(selector, &bloque)
       metodos[selector] = bloque
@@ -18,6 +24,33 @@ class Trait
         clase.send(:define_method, key, value)
       end
     end
+
+  #Lógica de la composición
+
+  def + (otroTrait)
+    trait_compuesto = Trait.new
+    trait_compuesto.metodos = self.metodos
+    trait_compuesto.agregar_nuevos_metodos (otroTrait.metodos)
+    trait_compuesto
+  end
+
+  def agregar_nuevos_metodos metodos_a_agregar
+    metodos_a_agregar.each {
+      | metodo_nombre, metodo_codigo |
+      self.agregar_metodo metodo_nombre, metodo_codigo
+    }
+  end
+
+  def agregar_metodo (metodo_nombre, metodo_codigo)
+
+    if(@metodos.include? metodo_nombre)
+      criterio_de_resolucion_conflictos.resolver_conflicto(self, metodo_nombre, metodo_codigo)
+    else
+      method(metodo_nombre, &metodo_codigo)
+    end
+
+  end
+
 
   # METODOS DE CLASE
 
@@ -40,5 +73,3 @@ class Class
 
 end
 
-#  TODO
-#    - Merge del código de Gus
