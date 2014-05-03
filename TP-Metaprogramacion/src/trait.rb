@@ -51,6 +51,16 @@ class Trait
 
   end
 
+  #Logica de la resta
+
+  def - metodo_nombre
+
+      trait_resultante = Trait.new()
+      trait_resultante.metodos = @metodos
+      trait_resultante.metodos.delete(metodo_nombre) { |met| "#{met} no pertenece a los metodos del trait" }
+      #Averiguar si es excepcion o solo una impresion por pantalla
+      return trait_resultante
+  end
 
   # METODOS DE CLASE
 
