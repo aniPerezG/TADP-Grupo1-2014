@@ -38,5 +38,14 @@ class Conflicto
 
   uses MiTrait + MiOtroTrait
 
+end
 
+class SinUnMetodo
+
+  uses MiOtroTrait - :metodo1
+
+end
+
+class TodoBienTodoLegal
+  uses MiTrait + (MiOtroTrait - :metodo1)
 end
