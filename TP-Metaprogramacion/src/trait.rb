@@ -29,7 +29,7 @@ class Trait
 
   def + (otroTrait)
     trait_compuesto = Trait.new
-    trait_compuesto.metodos = self.metodos
+    trait_compuesto.metodos = self.metodos.clone
     trait_compuesto.agregar_nuevos_metodos (otroTrait.metodos)
     trait_compuesto
   end
@@ -56,8 +56,8 @@ class Trait
   def - metodo_nombre
 
       trait_resultante = Trait.new()
-      trait_resultante.metodos = @metodos
-      trait_resultante.metodos.delete(metodo_nombre) { |met| "#{met} no pertenece a los metodos del trait" }
+      trait_resultante.metodos = @metodos.clone
+      trait_resultante.metodos.delete(metodo_nombre)
       #Averiguar si es excepcion o solo una impresion por pantalla
       return trait_resultante
   end
