@@ -29,8 +29,8 @@ class Trait
 
   def + (otroTrait)
     trait_compuesto = Trait.new
-    trait_compuesto.metodos = self.metodos.clone
-    trait_compuesto.agregar_nuevos_metodos (otroTrait.metodos)
+    trait_compuesto.metodos = @metodos.clone
+    trait_compuesto.agregar_nuevos_metodos (otroTrait.metodos.clone)
     trait_compuesto
   end
 
@@ -58,17 +58,14 @@ class Trait
       trait_resultante = Trait.new()
       trait_resultante.metodos = @metodos.clone
       trait_resultante.metodos.delete(metodo_nombre)
-      #Averiguar si es excepcion o solo una impresion por pantalla
-      return trait_resultante
+      trait_resultante
   end
 
   # METODOS DE CLASE
 
     def self.define(nombre, &bloque)
       @trait = Trait.new
-      @trait.instance_eval(&bloque)
-      # Acá ya tengo el Trait creado con sus métodos => Defino un literal con el nombre
-      # que me da la posibilidad de que cualquiera use el Trait
+      @trait.instance_eval(&bloque )
       Object.const_set(nombre, @trait)
       @trait
     end

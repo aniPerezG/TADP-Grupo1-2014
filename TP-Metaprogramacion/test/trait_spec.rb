@@ -20,15 +20,13 @@ describe 'Usando Traits' do
     sin_metodo = SinUnMetodo.new
     sin_metodo.metodo3.should == "mundo"
     expect {sin_metodo.metodo1}.to raise_error (NoMethodError)
-    #(sin_metodo.instance_methods(false).include? :metodo1).should == false
-
   end
 
- it 'una clase usa dos traits pero a una le resta un metodo conflictivo' do
+ it 'Una clase usa dos traits pero a una le resta un metodo conflictivo' do
     sin_conflicto = TodoBienTodoLegal.new
     sin_conflicto.metodo3.should == "mundo"
     sin_conflicto.metodo2(84).should == 42
-    sin_conflicto.metodo1.should = "hola"
+    sin_conflicto.metodo1.should == "hola"
  end
 
   end
