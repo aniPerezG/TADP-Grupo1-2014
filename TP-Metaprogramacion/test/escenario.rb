@@ -49,3 +49,7 @@ end
 class TodoBienTodoLegal
   uses MiTrait + (MiOtroTrait - :metodo1)
 end
+
+class ConAlias
+  uses MiTrait << (:metodo1 > :saludo)
+end

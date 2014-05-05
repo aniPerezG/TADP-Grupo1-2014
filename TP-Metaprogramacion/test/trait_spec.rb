@@ -29,4 +29,11 @@ describe 'Usando Traits' do
     sin_conflicto.metodo1.should == "hola"
  end
 
+  it 'Una clase que usa alias en un metodo' do
+    clase = ConAlias.new
+    clase.metodo1.should == "hola"
+    clase.saludo.should == "hola"
+    clase.metodo2(84).should == 42
+  end
+
   end

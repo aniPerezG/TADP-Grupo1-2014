@@ -61,6 +61,21 @@ class Trait
       trait_resultante
   end
 
+  #Logica de alias
+
+  def << bloque
+    trait_final = Trait.new
+    trait_final.metodos = @metodos.clone
+    bloque.call trait_final
+    trait_final
+
+  end
+
+  def codigo_metodo (nombre_metodo)
+    metodos[nombre_metodo]
+  end
+
+
   # METODOS DE CLASE
 
     def self.define(nombre, &bloque)
@@ -80,3 +95,13 @@ class Class
 
 end
 
+class Symbol
+
+  def > otroSimbolo
+    lambda do
+      |trait|
+      codigo = trait.codigo_metodo(self)
+      trait.agregar_metodo(otroSimbolo,codigo)
+    end
+  end
+end
