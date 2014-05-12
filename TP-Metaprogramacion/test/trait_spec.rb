@@ -36,4 +36,15 @@ describe 'Usando Traits' do
     clase.metodo2(84).should == 42
   end
 
+  it 'Una clase resuelve sus conflictos entre MiTrait y MiOtroTrait ejecutando el metodo de MiTrait' do
+  clase = ResuelveEjecutandoElPrimero.new
+  clase.metodo1.should == "hola"
+  end
+
+  it'Una clase resuelve sus conflictos entre MiTrait y MiOtroTrait ejecutando uno tras otro' do
+    clase = ResuelveUsandoTodos.new
+    clase.metodo1.should == "kawuabonga"
+    clase.metodo4(1, 2).should == 6
+  end
+
   end

@@ -10,6 +10,10 @@ Trait.define :MiTrait do
     numero * 0 + 42
   end
 
+  method :metodo4 do |numero1, numero2|
+    numero1 + numero2
+  end
+
 end
 
 Trait.define :MiOtroTrait do
@@ -22,7 +26,12 @@ Trait.define :MiOtroTrait do
     "mundo"
   end
 
+  method :metodo4 do |numero1, numero2|
+  (numero1 + numero2)*2
+  end
+
 end
+
 
 class MiClase
 
@@ -52,4 +61,12 @@ end
 
 class ConAlias
   uses MiTrait << (:metodo1 > :saludo)
+end
+
+class ResuelveEjecutandoElPrimero
+  uses ejecuta_el_primero(MiTrait + MiOtroTrait)
+end
+
+class ResuelveUsandoTodos
+  uses ejecuta_todos(MiTrait + MiOtroTrait)
 end

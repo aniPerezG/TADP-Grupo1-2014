@@ -1,22 +1,19 @@
-require '../src/no_resolvedor'
+require '../src/resolvedores'
 
 class Trait
 
-  attr_accessor :metodos, :criterio_de_resolucion_conflictos
+  attr_accessor :metodos, :criterio_de_resolucion_conflictos, :traits
 
   # METODOS DE INSTANCIA
 
     def initialize
       self.criterio_de_resolucion_conflictos= NoResolvedor.new
+      self.metodos = {}
+      self.traits = []
     end
 
     def method(selector, &bloque)
       metodos[selector] = bloque
-    end
-
-    def metodos
-      @metodos = @metodos || {}
-      @metodos
     end
 
     def definir_metodos_a(clase)
@@ -29,8 +26,9 @@ class Trait
 
   def + (otroTrait)
     trait_compuesto = Trait.new
-    trait_compuesto.metodos = @metodos.clone
-    trait_compuesto.agregar_nuevos_metodos (otroTrait.metodos.clone)
+    trait_compuesto.metodos= self.metodos.clone
+    trait_compuesto.traits= self.traits.clone
+    trait_compuesto.traits << otroTrait
     trait_compuesto
   end
 
@@ -44,19 +42,32 @@ class Trait
   def agregar_metodo (metodo_nombre, metodo_codigo)
 
     if(@metodos.include? metodo_nombre)
-      criterio_de_resolucion_conflictos.resolver_conflicto(self, metodo_nombre, metodo_codigo)
+      metodo = criterio_de_resolucion_conflictos.bloque_a_ejecutar self.metodos[metodo_nombre], metodo_codigo
+      self.method metodo_nombre, &metodo
     else
       method(metodo_nombre, &metodo_codigo)
     end
 
   end
 
+  def aplanar
+    traits.reduce self do
+    |seed, elem|
+      seed.agregar_nuevos_metodos(elem.metodos.clone)
+      seed
+    end
+  end
+
+  def aplanar_con (clase)
+    self.aplanar
+    self.definir_metodos_a(clase)
+  end
+
   #Logica de la resta
 
   def - metodo_nombre
-
       trait_resultante = Trait.new()
-      trait_resultante.metodos = @metodos.clone
+      trait_resultante.metodos = self.metodos.clone
       trait_resultante.metodos.delete(metodo_nombre)
       trait_resultante
   end
@@ -85,13 +96,10 @@ class Trait
       @trait
     end
 
-end
-
-class Class
-
-  def uses(trait)
-    trait.definir_metodos_a(self)
-  end
+    def self.resolvete_con(trait, estrategia_class)
+      trait.criterio_de_resolucion_conflictos = estrategia_class.new
+      trait
+    end
 
 end
 
@@ -99,9 +107,30 @@ class Symbol
 
   def > otroSimbolo
     lambda do
-      |trait|
+    |trait|
       codigo = trait.codigo_metodo(self)
       trait.agregar_metodo(otroSimbolo,codigo)
     end
   end
+
 end
+
+class Class
+
+  def ejecuta_el_primero(trait)
+   Trait.resolvete_con(trait, EjecutaElPrimero)
+  end
+
+  def ejecuta_todos(trait)
+    Trait.resolvete_con(trait, EjecutaTodos)
+  end
+
+  def uses(trait)
+    trait.aplanar_con(self)
+  end
+
+end
+
+
+
+
