@@ -42,7 +42,7 @@ class Trait
   def agregar_metodo (metodo_nombre, metodo_codigo)
 
     if(@metodos.include? metodo_nombre)
-      metodo = criterio_de_resolucion_conflictos.bloque_a_ejecutar self.metodos[metodo_nombre], metodo_codigo
+      metodo = criterio_de_resolucion_conflictos.bloque_a_ejecutar codigo_metodo(metodo_nombre), metodo_codigo
       self.method metodo_nombre, &metodo
     else
       method(metodo_nombre, &metodo_codigo)
