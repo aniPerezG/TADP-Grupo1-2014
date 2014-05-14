@@ -99,9 +99,9 @@ class Symbol
 
   def > otroSimbolo
     lambda do
-      |trait|
-      codigo = trait.codigo_metodo(self)
-      trait.agregar_metodo(otroSimbolo,codigo)
-    end
+    |trait|
+    codigo = trait.codigo_metodo(self)
+    trait.agregar_metodo(otroSimbolo,codigo)
+  end
   end
 end
