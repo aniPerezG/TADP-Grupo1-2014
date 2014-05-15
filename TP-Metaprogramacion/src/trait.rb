@@ -96,8 +96,8 @@ class Trait
       @trait
     end
 
-    def self.resolvete_con(trait, estrategia_class)
-      trait.criterio_de_resolucion_conflictos = estrategia_class.new
+    def self.resolvete_con(trait, estrategia_class, *args)
+      trait.criterio_de_resolucion_conflictos = estrategia_class.new(*args)
       trait
     end
 
@@ -123,6 +123,10 @@ class Class
 
   def ejecuta_todos(trait)
     Trait.resolvete_con(trait, EjecutaTodos)
+  end
+
+  def ejecuta_con_funcion(trait,unaFuncion)
+    Trait.resolvete_con(trait, EjecutaAplicandoFuncion, unaFuncion)
   end
 
   def uses(trait)

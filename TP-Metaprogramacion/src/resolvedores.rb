@@ -30,3 +30,22 @@ class EjecutaTodos
     end
   end
 end
+
+class EjecutaAplicandoFuncion
+
+  attr_accessor :funcion
+
+  def initialize unaFuncion
+      self.funcion = unaFuncion
+  end
+
+  def bloque_a_ejecutar metodo_trait1, metodo_trait2
+
+    Proc.new do
+      | *args |
+      metodo_trait1.call(*args).funcion metodo_trait2.call(*args)
+    end
+
+  end
+
+end

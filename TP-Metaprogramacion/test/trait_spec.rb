@@ -47,4 +47,9 @@ describe 'Usando Traits' do
     clase.metodo4(1, 2).should == 6
   end
 
+  it "Una clase resuelve sus conflictos aplicando una funcion a los resultados de los metodos conflictivos del Trait" do
+    clase = ResuelveUsandoFuncion.new
+    clase.metodo1.should =="holakawuabonga"
+    end
+
   end

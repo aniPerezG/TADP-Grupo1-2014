@@ -70,3 +70,7 @@ end
 class ResuelveUsandoTodos
   uses ejecuta_todos(MiTrait + MiOtroTrait)
 end
+
+class ResuelveUsandoFuncion
+  uses ejecuta_con_funcion(MiTrait + MiOtroTrait, :concat)
+end
