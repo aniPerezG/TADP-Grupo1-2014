@@ -43,7 +43,7 @@ class EjecutaAplicandoFuncion
 
     Proc.new do
       | *args |
-      metodo_trait1.call(*args).funcion metodo_trait2.call(*args)
+      funcion.call (metodo_trait1.call(*args), metodo_trait2.call(*args))
     end
 
   end

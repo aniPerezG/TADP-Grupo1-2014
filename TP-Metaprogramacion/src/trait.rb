@@ -125,7 +125,7 @@ class Class
     Trait.resolvete_con(trait, EjecutaTodos)
   end
 
-  def ejecuta_con_funcion(trait,unaFuncion)
+  def ejecuta_con_funcion(trait, unaFuncion)
     Trait.resolvete_con(trait, EjecutaAplicandoFuncion, unaFuncion)
   end
 
