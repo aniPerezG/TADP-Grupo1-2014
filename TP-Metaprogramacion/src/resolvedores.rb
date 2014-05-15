@@ -36,16 +36,19 @@ class EjecutaAplicandoFuncion
   attr_accessor :funcion
 
   def initialize unaFuncion
-      self.funcion = unaFuncion
+    self.funcion = unaFuncion
   end
 
   def bloque_a_ejecutar metodo_trait1, metodo_trait2
 
-    Proc.new do
-      | *args |
-      funcion.call (metodo_trait1.call(*args), metodo_trait2.call(*args))
-    end
+    bloque_a_ejecutar_con_funcion(metodo_trait1, metodo_trait2, self.funcion)
 
   end
 
+  def bloque_a_ejecutar_con_funcion metodo_trait1, metodo_trait2, funcion
+  Proc.new do
+  | *args |
+    funcion.call(metodo_trait1.call(*args), metodo_trait2.call(*args))
+  end
+    end
 end

@@ -49,7 +49,7 @@ describe 'Usando Traits' do
 
   it "Una clase resuelve sus conflictos aplicando una funcion a los resultados de los metodos conflictivos del Trait" do
     clase = ResuelveUsandoFuncion.new
-    clase.metodo1.should =="holakawuabonga"
+    clase.metodo1.should == "holakawuabonga"
     end
 
   end

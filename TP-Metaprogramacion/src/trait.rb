@@ -96,8 +96,8 @@ class Trait
       @trait
     end
 
-    def self.resolvete_con(trait, estrategia_class, *args)
-      trait.criterio_de_resolucion_conflictos = estrategia_class.new(*args)
+    def self.resolvete_con(trait, estrategia)
+      trait.criterio_de_resolucion_conflictos = estrategia
       trait
     end
 
@@ -118,15 +118,16 @@ end
 class Class
 
   def ejecuta_el_primero(trait)
-   Trait.resolvete_con(trait, EjecutaElPrimero)
+   Trait.resolvete_con(trait, EjecutaElPrimero.new)
   end
 
   def ejecuta_todos(trait)
-    Trait.resolvete_con(trait, EjecutaTodos)
+    Trait.resolvete_con(trait, EjecutaTodos.new)
   end
 
   def ejecuta_con_funcion(trait, unaFuncion)
-    Trait.resolvete_con(trait, EjecutaAplicandoFuncion, unaFuncion)
+  instancia = EjecutaAplicandoFuncion.new (unaFuncion)
+  Trait.resolvete_con(trait,instancia)
   end
 
   def uses(trait)
@@ -134,7 +135,3 @@ class Class
   end
 
 end
-
-
-
-

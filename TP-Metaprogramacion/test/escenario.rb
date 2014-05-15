@@ -72,6 +72,7 @@ class ResuelveUsandoTodos
 end
 
 class ResuelveUsandoFuncion
+
   uses ejecuta_con_funcion(MiTrait + MiOtroTrait, lambda do
   |arg1, arg2|
     arg1.concat arg2
