@@ -32,6 +32,19 @@ Trait.define :MiOtroTrait do
 
 end
 
+Trait.define :ElTercerTraitEnDiscordia do
+
+  method :metodo1 do
+    "oruga"
+  end
+
+  method :metodo3 do
+    "babosos"
+  end
+
+end
+
+
 
 class MiClase
 
@@ -79,3 +92,12 @@ class ResuelveUsandoFuncion
   end)
 end
 
+
+class ResuelveUsandoCriterio
+
+  uses ejecuta_con_criterio(MiTrait + MiOtroTrait + ElTercerTraitEnDiscordia, lambda do
+    |arg1|
+    arg1[0] == "h"
+  end)
+
+end

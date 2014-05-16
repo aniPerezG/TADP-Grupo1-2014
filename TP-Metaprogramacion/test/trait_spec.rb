@@ -50,6 +50,16 @@ describe 'Usando Traits' do
   it "Una clase resuelve sus conflictos aplicando una funcion a los resultados de los metodos conflictivos del Trait" do
     clase = ResuelveUsandoFuncion.new
     clase.metodo1.should == "holakawuabonga"
-    end
+  end
+
+  it "Una clase resuelve sus conflictos entre distintos traits ejecutando el primero que cumple una condicion" do
+    clase = ResuelveUsandoCriterio.new
+    clase.metodo1.should == "hola"
+  end
+
+  it "Una clase quiere resolver sus conflictos ejecutando el primero que cumple la condicion pero ninguno la cumple y arroja una excepcion" do
+    clase =  ResuelveUsandoCriterio.new
+    expect {clase.metodo3}.to raise_error(ConflictoTraitException)
+  end
 
   end
