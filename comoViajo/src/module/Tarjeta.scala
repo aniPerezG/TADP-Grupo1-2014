@@ -1,14 +1,15 @@
 package module
 
 abstract class Tarjeta {
-  var coeficienteDescuento: Double 
-  var condicion : (Viaje => Boolean) //esto no se si esta bien 
+  var condicion: (Viaje => Boolean) //esto no se si esta bien 
+
+  def precioAPagar(viaje: Viaje):Double = {
+    if(this.condicion(viaje)){
+      return this.totalAPagar(viaje)
+    } else {
+      return viaje.precioBase
+    }
+  }
   
-  def precioAPagar(viaje: Viaje) {
-    if(condicion(viaje)){
-    (viaje.precioBase) * (this.coeficienteDescuento)
-  }
-  else{
-    return viaje.precioBase
-  }
+  def totalAPagar(viaje :Viaje) : Double 
 }
