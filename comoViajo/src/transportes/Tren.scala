@@ -1,9 +1,11 @@
 package transportes
 
-import comoViajo.Viaje
+import module.Viaje
 
 class Tren extends Transporte {
 
+   
+  
   def costoViaje(viaje : Viaje){
     
   }

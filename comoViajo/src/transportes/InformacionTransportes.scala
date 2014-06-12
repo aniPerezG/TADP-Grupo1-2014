@@ -1,6 +1,6 @@
 package transportes
 
-import comoViajo.Lugar
+import module.Lugar
 
 trait InformacionTransportes {
 

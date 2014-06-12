@@ -1,6 +1,6 @@
 package transportes
 
-import comoViajo.Viaje
+import module.Viaje
 
 class Pie extends Transporte {
 
