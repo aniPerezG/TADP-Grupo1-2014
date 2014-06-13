@@ -1,6 +1,8 @@
 package module
 
-class Zona {
+class Zona (nombre: String){
   var lugares: List[Lugar]
+  var nombre: String
+  
 
 }

@@ -5,9 +5,9 @@ import module.Lugar
 trait InformacionTransportes {
 
   def transportesCerca(lugar: Lugar): List[Transporte]
-  def combinar (linea : Colectivo ): List[Lugar]
-  def distanciaColectivo ( lugar : Lugar): Int
-  def distanciaAPie (lugar : Lugar ): Int
+  def dondeMeBajoCombinando (linea : Colectivo ): Lugar
+  def distanciaColectivo ( origen : Lugar, destino : Lugar): Int
+  def distanciaAPie (origen : Lugar, destino : Lugar): Int
 
 
 }

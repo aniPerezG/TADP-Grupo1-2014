@@ -12,7 +12,7 @@ class Viaje(tipoTarjeta : Tarjeta, unOrigen: Lugar, unDestino:Lugar) {
   
   
   def obtenerCostoViaje {
-    precioBase = transportes.foldLeft(0.0)((num, trans) => num + trans.costoViaje(this))
+    precioBase = transportes.foldLeft(0.0)((num, trans) => num + trans.costoViaje(this)) 
     tipoTarjeta.precioAPagar(this)
   }
   
