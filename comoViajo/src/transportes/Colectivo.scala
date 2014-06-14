@@ -5,15 +5,14 @@ import module.Viaje
 class Colectivo extends Transporte{
   
   var informadorTransportes: InformacionTransportes
-  var distanciaARecorrer : Int
+
   
   def costoViaje(viaje : Viaje) : Double = {
-   		distanciaARecorrer = informadorTransportes.distanciaColectivo(viaje.origen , viaje.destino )
-   		if(distanciaARecorrer < 3) 
+   		if(this.distanciaARecorrer(viaje) < 3) 
    		{
    		  return 2.5
    		}
-   		if (distanciaARecorrer < 6)
+   		if (this.distanciaARecorrer(viaje) < 6)
    		{
    		  return 2.75
    		}
@@ -22,5 +21,18 @@ class Colectivo extends Transporte{
    		  return 2.85
    		}
   }
+  
+  override
+  def tiempoDeViaje(viaje : Viaje) : Int = 
+  {
+	distanciaARecorrer(viaje) / 15000 * 60
+	
+  }
+  
+  def distanciaARecorrer(viaje : Viaje) : Int =
+  {
+    informadorTransportes.distanciaColectivo(viaje.origen , viaje.destino ) + tiempoPorCombinaciones(viaje)
+  }
 
+  def tiempoPorCombinaciones (viaje : Viaje) : Int 
 }
