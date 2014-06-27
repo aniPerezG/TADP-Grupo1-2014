@@ -9,20 +9,20 @@ class Tren extends Transporte {
       return 0.0
     }
     
-     def tiempoRecorrido (unRecorrido : Recorrido) : Int = {
+     def tiempoRecorrido (unRecorrido : Recorrido) : Double = {
       
       return 3 * this.paradasDe(unRecorrido)
     }
      
-     def tiempoDeCombinacion(combinacion : Recorrido) : Int = {
+     def tiempoDeCombinacion(unRecorrido : Recorrido ,combinacion : Recorrido) : Double = {
        return combinacionCon(combinacion.transporte)
      }
      
-     def combinacionCon(tranporteDeCombinacion : Subte) : Int = {
+     def combinacionCon(tranporteDeCombinacion : Subte) : Double = {
        return 5
      }
      
-     def combinacionCon(tranporteDeCombinacion : Tren) : Int = {
+     def combinacionCon(tranporteDeCombinacion : Tren) : Double = {
        return 6
      }
 }

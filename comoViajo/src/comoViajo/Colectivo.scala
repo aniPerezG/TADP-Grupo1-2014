@@ -26,14 +26,17 @@ class Colectivo extends Transporte{
     
     }
     
-    def tiempoRecorrido (unRecorrido : Recorrido) : Int = {
+    def tiempoRecorrido (unRecorrido : Recorrido) : Double = {
       
       return this.distanciaARecorrer(unRecorrido) / 15000 * 60
     }
     
      
-     def tiempoDeCombinacion(combinacion : Recorrido) : Int = {
-       return 0 //TODO
+     def tiempoDeCombinacion(unRecorrido : Recorrido ,combinacion : Recorrido) : Double = {
+       
+       val distanciaEntreParadas = informadorTransportes.distanciaAPie( unRecorrido.paradaDeBajada,combinacion.paradaDeSubida)
+       return (distanciaEntreParadas / 100) * 2.5
+
      }
 
 }

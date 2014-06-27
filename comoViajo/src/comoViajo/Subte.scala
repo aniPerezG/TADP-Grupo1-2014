@@ -9,15 +9,15 @@ class Subte extends Transporte {
       return 2 * this.paradasDe(unRecorrido)
     }
 
-  def tiempoDeCombinacion(combinacion : Recorrido) : Int = {
+  def tiempoDeCombinacion(unRecorrido : Recorrido , combinacion : Recorrido) : Double = {
        return combinacionCon(combinacion.transporte)
   }
   
-  def combinacionCon(tranporteDeCombinacion : Subte) : Int = {
+  def combinacionCon(tranporteDeCombinacion : Subte) : Double = {
        return 4
   }
-     
-  def combinacionCon(tranporteDeCombinacion : Tren) : Int = {
+      
+  def combinacionCon(tranporteDeCombinacion : Tren) : Double = {
        return 5
   }
   
