@@ -18,7 +18,7 @@ class Colectivo extends Transporte{
      		{
      		  return 2.85
      		}
-    }
+    } 
     
     def distanciaARecorrer(unRecorrido : Recorrido) : Int = {
     

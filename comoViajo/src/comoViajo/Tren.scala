@@ -2,8 +2,11 @@ package comoViajo
 
 class Tren extends Transporte {
 
+    var tablaDePrecios : Map[Int,Double] = Map()
       
     def costoRecorrido(unRecorrido : Recorrido) : Double = {
+      
+      var cantParadas = this.paradasDe(unRecorrido)
       //TODO Usar diccionario con el limite de estaciones y el precio?
       //al cambiar de una linea de tren a otra, se debe abonar un nuevo pasaje
       return 0.0
@@ -15,7 +18,7 @@ class Tren extends Transporte {
     }
      
      def tiempoDeCombinacion(unRecorrido : Recorrido ,combinacion : Recorrido) : Double = {
-       return combinacionCon(combinacion.transporte)
+        return combinacion.transporte.combinacionCon(this) 
      }
      
      def combinacionCon(tranporteDeCombinacion : Subte) : Double = {

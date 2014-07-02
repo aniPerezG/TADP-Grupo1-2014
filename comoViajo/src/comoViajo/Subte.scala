@@ -10,7 +10,7 @@ class Subte extends Transporte {
     }
 
   def tiempoDeCombinacion(unRecorrido : Recorrido , combinacion : Recorrido) : Double = {
-       return combinacionCon(combinacion.transporte)
+       return combinacion.transporte.combinacionCon(this) 
   }
   
   def combinacionCon(tranporteDeCombinacion : Subte) : Double = {
