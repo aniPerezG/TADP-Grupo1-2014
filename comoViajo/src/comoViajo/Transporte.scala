@@ -23,4 +23,8 @@ trait Transporte {
     ???
   }
 
+  def dameElViajeA(destino: Direccion) : Viaje= {
+    ???
+  }
+
 }

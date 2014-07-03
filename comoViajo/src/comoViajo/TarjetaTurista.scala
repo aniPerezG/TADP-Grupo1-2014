@@ -10,7 +10,7 @@ class TarjetaTurista extends Tarjeta {
     return (unRecorrido.precioBase) * 0.9
   }
   
-    condicion = {unRecorrido: Recorrido => zona.contains(unRecorrido.paradaDeSubida) && zona.contains(unRecorrido.paradaDeBajada) }
+   val condicion = {unRecorrido: Recorrido => zona.contains(unRecorrido.paradaDeSubida) && zona.contains(unRecorrido.paradaDeBajada) }
 
 
 }

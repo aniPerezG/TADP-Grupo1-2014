@@ -1,6 +1,6 @@
 package comoViajo
 
-class Tren extends Transporte {
+class Tren(var paradas: Array[Direccion]) extends Transporte {
 
     var tablaDePrecios : Map[Int,Double] = Map()
       
@@ -17,7 +17,7 @@ class Tren extends Transporte {
       return 3 * this.paradasDe(unRecorrido)
     }
      
-     def tiempoDeCombinacion(unRecorrido : Recorrido ,combinacion : Recorrido) : Double = {
+     def tiempoDeCombinacionEntre(unRecorrido : Recorrido ,combinacion : Recorrido) : Double = {
         return combinacion.transporte.combinacionCon(this) 
      }
      

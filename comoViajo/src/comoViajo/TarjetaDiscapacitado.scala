@@ -1,8 +1,8 @@
 package comoViajo
 
 class TarjetaDiscapacitado extends Tarjeta {
-  
-     condicion = {unRecorrido : Recorrido => true}
+ 
+	  val condicion : (Recorrido => Boolean) = {unRecorrido : Recorrido => true}
 	  
 	   def precioConDescuento (unRecorrido : Recorrido) : Double = {
 	     

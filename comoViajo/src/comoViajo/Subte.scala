@@ -1,15 +1,15 @@
 package comoViajo
 
-class Subte extends Transporte {
+class Subte(var paradas: Array[Direccion]) extends Transporte { 
   
   def costoRecorrido(unRecorrido : Recorrido) =  4.50 
   
-  def tiempoRecorrido (unRecorrido : Recorrido) : Int = {
+  def tiempoRecorrido (unRecorrido : Recorrido) : Double = {
       
       return 2 * this.paradasDe(unRecorrido)
     }
 
-  def tiempoDeCombinacion(unRecorrido : Recorrido , combinacion : Recorrido) : Double = {
+  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , combinacion : Recorrido) : Double = {
        return combinacion.transporte.combinacionCon(this) 
   }
   

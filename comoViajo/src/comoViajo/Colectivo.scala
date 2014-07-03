@@ -1,8 +1,8 @@
 package comoViajo
 
-class Colectivo extends Transporte{
+class Colectivo (val informadorTransportes: InformacionTransportes, var paradas: Array[Direccion]) extends Transporte{
   
-    val informadorTransportes: InformacionTransportes
+    
 
   
     def costoRecorrido(unRecorrido : Recorrido) : Double = {
@@ -32,7 +32,7 @@ class Colectivo extends Transporte{
     }
     
      
-     def tiempoDeCombinacion(unRecorrido : Recorrido ,combinacion : Recorrido) : Double = {
+     def tiempoDeCombinacionEntre(unRecorrido : Recorrido ,combinacion : Recorrido) : Double = {
        
        val distanciaEntreParadas = informadorTransportes.distanciaAPie( unRecorrido.paradaDeBajada,combinacion.paradaDeSubida)
        return (distanciaEntreParadas / 100) * 2.5

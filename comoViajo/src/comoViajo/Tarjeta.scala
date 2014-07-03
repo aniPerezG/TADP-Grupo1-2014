@@ -5,7 +5,7 @@ import scala.collection.mutable.MutableList
 trait Tarjeta {
 
   
-    var condicion: (Recorrido => Boolean) //esto no se si esta bien 
+    val condicion: (Recorrido => Boolean) //esto no se si esta bien 
     
     def precioDeTarjeta (unRecorrido : Recorrido) : Double  = {
       
