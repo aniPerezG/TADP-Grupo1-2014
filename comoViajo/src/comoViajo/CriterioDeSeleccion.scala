@@ -1,6 +1,12 @@
 package comoViajo
 
+import scala.collection.mutable.MutableList
+
 trait CriterioDeSeleccion {
 
-   def seleccionar (posiblesViajes : List[Viaje], unUsuario : Usuario) : Viaje
+   def seleccionar (posiblesViajes : MutableList[Viaje], unaTarjeta: Tarjeta) : Viaje 
+   
+   def seleccionar (posiblesViajes : MutableList[Viaje]) : Viaje
+   
+   
 }

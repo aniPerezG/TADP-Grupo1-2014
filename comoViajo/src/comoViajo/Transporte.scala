@@ -2,13 +2,13 @@ package comoViajo
 
 trait Transporte {
   
+  val informadorTransportes: InformacionTransportes
   var paradas: Array[Direccion] //Usamos un array porque tiene que estar ordenado
   
   def costoRecorrido (unRecorrido : Recorrido): Double //Ver si lo del usuario lo calculamos acá
   def tiempoRecorrido (unRecorrido : Recorrido) : Double
   def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido) : Double//Cuando lo hagamos en funcional podríamos usar pattern Matching aca
-  def combinacionCon(unTren : Tren) : Double
-  def combinacionCon(unSubte : Subte) : Double
+  def transportesVecinosEntre(origen : Direccion, destino : Direccion) : List[Transporte]
   
   def paradasDe(unRecorrido : Recorrido) : Int = {
     
@@ -18,13 +18,13 @@ trait Transporte {
     
   }
 
-  def transportesVecinos : List[Transporte]= {
-    
-    ???
+  def interseccionCon(otroTransporte: Transporte) : Direccion = {
+    return this.paradas.intersect(otroTransporte.paradas).head
   }
-
-  def dameElViajeA(destino: Direccion) : Viaje= {
-    ???
+  
+  def transportesVecinosEntre(): Array[Transporte] = {
+       
+      return paradas.flatMap{unaParada => informadorTransportes.transportesCerca(unaParada)}
   }
 
 }

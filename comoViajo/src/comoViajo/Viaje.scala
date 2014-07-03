@@ -1,20 +1,24 @@
 package comoViajo
 
-class Viaje {
+class Viaje() {
   
-  var recorridos : List[Recorrido] = List()
+  def costoDelViaje (unaTarjeta : Tarjeta) : Double/* = {
+      
+    return recorridos.map{unRecorrido => unaTarjeta.precioDeTarjeta(unRecorrido)}.sum
+  }*/
   
-  def costoDelViaje (unUsuario : Usuario) : Double = {
+   def costoDelViaje () : Double /*= {
     
-    return recorridos.map{unRecorrido => unUsuario.tarjeta.precioDeTarjeta(unRecorrido)}.sum
-  }
+    return recorridos.map{unRecorrido => unRecorrido.precioBase}.sum
+  }*/
   
-  def tiempoDelViaje : Double = {
+  
+  def tiempoDelViaje : Double /*= {
     
     return recorridos.map{unRecorrido => unRecorrido.obtenerTiempoRecorrido}.sum + this.obtenerTiempoDeCombinaciones
-  }
+  }*/
 
-  def obtenerTiempoDeCombinaciones : Double = {
+  def obtenerTiempoDeCombinaciones : Double /*= {
     
     var resultado = 0.0
     if (recorridos.length > 1) 
@@ -29,6 +33,6 @@ class Viaje {
     }
    
    return resultado
-  }
+  }*/
   
 }

@@ -1,6 +1,6 @@
 package comoViajo
 
-class Subte(var paradas: Array[Direccion]) extends Transporte { 
+class Subte(var paradas: Array[Direccion])  extends Transporte{ 
   
   def costoRecorrido(unRecorrido : Recorrido) =  4.50 
   
@@ -10,7 +10,7 @@ class Subte(var paradas: Array[Direccion]) extends Transporte {
     }
 
   def tiempoDeCombinacionEntre(unRecorrido : Recorrido , combinacion : Recorrido) : Double = {
-       return combinacion.transporte.combinacionCon(this) 
+       return this.combinacionCon(combinacion.transporte)  
   }
   
   def combinacionCon(tranporteDeCombinacion : Subte) : Double = {
@@ -19,6 +19,7 @@ class Subte(var paradas: Array[Direccion]) extends Transporte {
       
   def combinacionCon(tranporteDeCombinacion : Tren) : Double = {
        return 5
-  }
+  }    
   
+  //TODO 
 }
