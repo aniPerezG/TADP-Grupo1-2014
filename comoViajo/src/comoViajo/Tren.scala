@@ -7,9 +7,13 @@ class Tren(val informadorTransportes: InformacionTransportes, var paradas: Array
     def costoRecorrido(unRecorrido : Recorrido) : Double = {
       
       var cantParadas = this.paradasDe(unRecorrido)
-      //TODO Usar diccionario con el limite de estaciones y el precio?
-      //al cambiar de una linea de tren a otra, se debe abonar un nuevo pasaje
-      return 0.0
+      var tuplaConElPosiblePrecioAPagar = tablaDePrecios.find{case (cantidadMaxima, precioAPagar) => cantidadMaxima >= cantParadas}
+      if(tuplaConElPosiblePrecioAPagar.isDefined) {
+        return tuplaConElPosiblePrecioAPagar.get._2 //En caso de que el option devuelto por el find sea Some obtengo el elemento del diccionario(el segundo componente de la tupla)
+      }
+      else {
+        return tablaDePrecios.last._2  //En caso de que el option devuelto por el find sea none devuelvo el mayor precio
+      }
     }
     
      def tiempoRecorrido (unRecorrido : Recorrido) : Double = {
@@ -28,8 +32,5 @@ class Tren(val informadorTransportes: InformacionTransportes, var paradas: Array
     def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, unColectivo : Colectivo) : Double = {
         return unColectivo.tiempoDeCombinacionEntre(unRecorrido, otroRecorrido, this)
     }
-     
-
-     
-     
+         
 }
