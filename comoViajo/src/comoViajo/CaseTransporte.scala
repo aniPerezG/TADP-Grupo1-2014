@@ -1,7 +1,7 @@
 package comoViajo
 
-class CaseTransporte 
+abstract class CaseTransporte 
 
-case object SUBTE
-case object COLECTIVO
-case class TREN()
+case object SUBTE extends CaseTransporte
+case object COLECTIVO extends CaseTransporte
+case class TREN(tabla : TablaPrecios) extends CaseTransporte
