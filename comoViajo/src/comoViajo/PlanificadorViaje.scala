@@ -53,16 +53,3 @@ class PlanificadorViaje(val informador: InformacionTransportes, var listaDeViaje
   
 
 }
-
-  
-
-
-//El viejo armarPosiblesViajes
-    //     var transportesCercaDelOrigen = informador.transportesCerca(origen)
-    //     var transportesCercaDelDestino = informador.transportesCerca(destino)
-    //     var listaDeCombinaciones :List[Map[Transporte,Transporte]] = List();
-    //      
-    //     var transportesQuePuedenLlegarADestino = transportesCercaDelOrigen.filter{unTransporte: Transporte => transportesCercaDelDestino.contains(unTransporte)|| unTransporte.transportesVecinos.exists{transporteVecino: Transporte =>transportesCercaDelDestino.contains(transporteVecino)}}
-    //     var listaDeViajes: MutableList[Viaje] = MutableList()
-    //     transportesQuePuedenLlegarADestino.foreach{ unTransporte => listaDeViajes += (unTransporte.dameElViajeA(destino))}//TODO
-    //     return listaDeViajes

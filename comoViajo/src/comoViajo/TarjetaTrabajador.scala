@@ -12,6 +12,6 @@ class TarjetaTrabajador  extends Tarjeta {
      
      def precioConDescuento(unRecorrido: Recorrido) : Double = {
        
-       return unRecorrido.precioBase - 1.50
+       return unRecorrido.costoBase - 1.50
      }
 }

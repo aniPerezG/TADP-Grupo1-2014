@@ -5,7 +5,7 @@ import scala.collection.mutable.MutableList
 trait Tarjeta {
 
   
-    val condicion: (Recorrido => Boolean) //esto no se si esta bien 
+    val condicion: (Recorrido => Boolean)
     
     def precioDeTarjeta (unRecorrido : Recorrido) : Double  = {
       
@@ -15,18 +15,10 @@ trait Tarjeta {
        } 
        else 
        {
-         return unRecorrido.precioBase
+         return unRecorrido.costoBase
        }
      }
     
     def precioConDescuento(unRecorrido : Recorrido) : Double 
 
- //      var recorridos : MutableList[Recorrido] = MutableList(viaje)
-//      var recorridoActual : Recorrido = viaje
-//      while(viaje.siguienteRecorrido != null)
-//      {
-//        recorridoActual = viaje.siguienteRecorrido
-//        recorridos += recorridoActual
-//      }
-//      return recorridos.map(unRecorrido => this.precioConDescuento(unRecorrido)).sum
 }

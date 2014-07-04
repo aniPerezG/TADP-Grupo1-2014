@@ -1,6 +1,7 @@
 package comoViajo
 
-class Subte(var paradas: Array[Direccion])  extends Transporte{ 
+class Subte(val informadorTransportes: InformacionTransportes, var paradas: Array[Direccion])  extends Transporte{ 
+  
   
   def costoRecorrido(unRecorrido : Recorrido) =  4.50 
   
@@ -8,18 +9,25 @@ class Subte(var paradas: Array[Direccion])  extends Transporte{
       
       return 2 * this.paradasDe(unRecorrido)
     }
+ 
+  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, otroSubte : Transporte) : Double = {
+      return 4
+  }
+  
+  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, unTren : Tren) : Double = {
+      return 5
+  }
+  
+  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, unColectivo : Colectivo) : Double = {
+      return unColectivo.tiempoDeCombinacionEntre(unRecorrido, otroRecorrido, this)
+  }
+  
+  def costoDeCombinar(combinacion: Recorrido, unSubte: Subte) : Double = {
+    return 0
+  }
+  
+  def costoDeCombinar(combinacion : Recorrido, unSubte : Subte, unaTarjeta : Tarjeta) : Double = {
+    return 0
+  }
 
-  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , combinacion : Recorrido) : Double = {
-       return this.combinacionCon(combinacion.transporte)  
-  }
-  
-  def combinacionCon(tranporteDeCombinacion : Subte) : Double = {
-       return 4
-  }
-      
-  def combinacionCon(tranporteDeCombinacion : Tren) : Double = {
-       return 5
-  }    
-  
-  //TODO 
 }

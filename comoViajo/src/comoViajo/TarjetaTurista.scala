@@ -7,7 +7,7 @@ class TarjetaTurista extends Tarjeta {
   def precioConDescuento (unRecorrido : Recorrido) : Double = 
   {
     
-    return (unRecorrido.precioBase) * 0.9
+    return (unRecorrido.costoBase) * 0.9
   }
   
    val condicion = {unRecorrido: Recorrido => zona.contains(unRecorrido.paradaDeSubida) && zona.contains(unRecorrido.paradaDeBajada) }

@@ -5,10 +5,10 @@ trait Transporte {
   val informadorTransportes: InformacionTransportes
   var paradas: Array[Direccion] //Usamos un array porque tiene que estar ordenado
   
-  def costoRecorrido (unRecorrido : Recorrido): Double //Ver si lo del usuario lo calculamos acá
+  def costoRecorrido (unRecorrido : Recorrido): Double 
   def tiempoRecorrido (unRecorrido : Recorrido) : Double
-  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido) : Double//Cuando lo hagamos en funcional podríamos usar pattern Matching aca
-  def transportesVecinosEntre(origen : Direccion, destino : Direccion) : List[Transporte]
+  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, otroTransporte : Transporte) : Double
+
   
   def paradasDe(unRecorrido : Recorrido) : Int = {
     
@@ -25,6 +25,14 @@ trait Transporte {
   def transportesVecinosEntre(): Array[Transporte] = {
        
       return paradas.flatMap{unaParada => informadorTransportes.transportesCerca(unaParada)}
+  }
+
+  def costoDeCombinar(combinacion: Recorrido, unTransporte: Transporte) : Double = {
+    return combinacion.costoBase
+  }
+  
+  def costoDeCombinar(combinacion : Recorrido, unTransporte : Transporte, unaTarjeta : Tarjeta) : Double = {
+    return unaTarjeta.precioDeTarjeta(combinacion)
   }
 
 }
