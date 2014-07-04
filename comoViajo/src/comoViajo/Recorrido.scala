@@ -1,4 +1,4 @@
-package comoViajo
+package comoViajo 
 
 class Recorrido(var paradaDeSubida : Direccion, var paradaDeBajada: Direccion, var transporte : CaseTransporte, var informador : InformacionTransportes) {
 

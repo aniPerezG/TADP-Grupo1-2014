@@ -1,0 +1,11 @@
+package funcionalObjetos
+
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import org.uqbar.paco.microprocesador.funcional._
+import org.junit.Before
+import org.junit.runner.RunWith
+
+class testsUnitarios {
+
+}

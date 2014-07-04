@@ -1,0 +1,9 @@
+package funcionalObjetos
+
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import org.junit.Before
+
+class testsUnitarios {
+
+}
