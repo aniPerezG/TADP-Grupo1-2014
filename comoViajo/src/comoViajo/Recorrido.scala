@@ -6,11 +6,11 @@ class Recorrido(var paradaDeSubida: Direccion, var paradaDeBajada: Direccion, va
 
   def costoBase: Double = transporte match {
     case SUBTE(_,_) => 4.5
-    case TREN(_,_,tabla) => tabla.precio(this)
+    case TREN(paradas,informador,tabla) => TREN(paradas,informador,tabla).costo(this)
     case COLECTIVO(_,informador) =>
       var distancia: Int = informador.distanciaColectivo(paradaDeSubida, paradaDeBajada)
-      if (distancia < 3) 2.5 else {
-        if (distancia < 6) 2.75 else 2.85
+      if (distancia < 3000) 2.5 else {
+        if (distancia < 6000) 2.75 else 2.85
       }
   }
 

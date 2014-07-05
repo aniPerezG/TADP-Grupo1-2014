@@ -24,4 +24,15 @@ abstract class CaseTransporte  {
 
 case class SUBTE(paradas: Array[Direccion], informador: InformacionTransportes) extends CaseTransporte
 case class COLECTIVO(paradas: Array[Direccion], informador: InformacionTransportes) extends CaseTransporte
-case class TREN(paradas: Array[Direccion], informador: InformacionTransportes, tabla: TablaPrecios) extends CaseTransporte
+case class TREN(paradas: Array[Direccion], informador: InformacionTransportes, tablaDePrecios: Map[Int,Double] = Map()) extends CaseTransporte {
+  def costo (recorrido : Recorrido) : Double = {
+      var cantParadas = this.paradasDe(recorrido)
+      var tuplaConElPosiblePrecioAPagar = tablaDePrecios.find{case (cantidadMaxima, precioAPagar) => cantidadMaxima >= cantParadas}
+      if(tuplaConElPosiblePrecioAPagar.isDefined) {
+        return tuplaConElPosiblePrecioAPagar.get._2 //En caso de que el option devuelto por el find sea Some obtengo el elemento del diccionario(el segundo componente de la tupla)
+      }
+      else {
+        return tablaDePrecios.last._2  //En caso de que el option devuelto por el find sea none devuelvo el mayor precio
+      }
+    }
+}
