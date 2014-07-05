@@ -10,8 +10,8 @@ class ViajeSimple (var recorrido : Recorrido) extends Viaje{
       return recorrido.costoBase
     }
     
-//    def tiempoDelViaje : Double = {
-//      return recorrido.tiempoBase
-//    }
+    def tiempoDelViaje : Double = {
+      return recorrido.tiempoBase
+    }
 
 }

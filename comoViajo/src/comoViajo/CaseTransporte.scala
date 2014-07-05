@@ -2,6 +2,7 @@ package comoViajo
 
 abstract class CaseTransporte {
 
+  //var informador = new InformadorPosta
   var paradas: Array[Direccion] //Usamos un array porque tiene que estar ordenado
 
   def paradasDe(unRecorrido: Recorrido): Int = {
