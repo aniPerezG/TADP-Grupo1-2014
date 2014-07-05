@@ -1,7 +1,7 @@
 package comoViajo
 
 trait Transporte {
-  
+  /*
   val informadorTransportes: InformacionTransportes
   var paradas: Array[Direccion] //Usamos un array porque tiene que estar ordenado
   
@@ -34,5 +34,5 @@ trait Transporte {
   def costoDeCombinar(combinacion : Recorrido, unTransporte : Transporte, unaTarjeta : Tarjeta) : Double = {
     return unaTarjeta.precioDeTarjeta(combinacion)
   }
-
+*/
 }

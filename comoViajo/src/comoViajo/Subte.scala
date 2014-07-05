@@ -1,5 +1,5 @@
 package comoViajo
-
+/*
 class Subte(val informadorTransportes: InformacionTransportes, var paradas: Array[Direccion])  extends Transporte{ 
   
   
@@ -30,4 +30,4 @@ class Subte(val informadorTransportes: InformacionTransportes, var paradas: Arra
     return 0
   }
 
-}
+}*/

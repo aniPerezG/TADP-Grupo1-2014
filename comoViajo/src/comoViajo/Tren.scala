@@ -1,5 +1,5 @@
 package comoViajo
-
+/*
 class Tren(val informadorTransportes: InformacionTransportes, var paradas: Array[Direccion]) extends Transporte{
 
     var tablaDePrecios : Map[Int,Double] = Map()
@@ -32,4 +32,4 @@ class Tren(val informadorTransportes: InformacionTransportes, var paradas: Array
 
      
      
-}
+}*/

@@ -1,5 +1,5 @@
 package comoViajo
-
+/*
 class Colectivo (val informadorTransportes: InformacionTransportes, var paradas: Array[Direccion]) extends Transporte{
   
     def costoRecorrido(unRecorrido : Recorrido) : Double = {
@@ -35,4 +35,4 @@ class Colectivo (val informadorTransportes: InformacionTransportes, var paradas:
       return (distanciaEntreParadas / 100) * 2.5
 
     }
-}
+}*/
