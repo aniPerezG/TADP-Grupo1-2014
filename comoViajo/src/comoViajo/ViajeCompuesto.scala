@@ -1,17 +1,34 @@
 package comoViajo
 
-class ViajeCompuesto (var unRecorrido : Recorrido, var otroRecorrido : Recorrido)extends Viaje{
+class ViajeCompuesto(var unRecorrido: Recorrido, var otroRecorrido: Recorrido) extends Viaje {
+
+  def costoDelViaje(): Double = {
+    return costoCombinar (unRecorrido , otroRecorrido)
+  }
+
+  def costoDelViaje(unaTarjeta: Tarjeta): Double = {
+    return costoCombinar(unRecorrido , otroRecorrido , unaTarjeta)
+  } 
+
   
-    def costoDelViaje() : Double = {
-        return unRecorrido.costoCombinado(otroRecorrido)
+  def costoCombinar(primerRecorrido: Recorrido, segundoRecorrido: Recorrido) = 
+    primerRecorrido.transporte match {
+    case SUBTE => segundoRecorrido.transporte match {
+      case SUBTE => primerRecorrido.costoBase
     }
-    
-    def costoDelViaje(unaTarjeta : Tarjeta) : Double = {
-        return unRecorrido.costoCombinado(otroRecorrido,unaTarjeta)
+    case _ => primerRecorrido.costoBase + segundoRecorrido.costoBase
+  }
+
+  def costoCombinar(primerRecorrido: Recorrido, segundoRecorrido: Recorrido, tarjeta: Tarjeta) =
+    primerRecorrido.transporte match {
+      case SUBTE => segundoRecorrido.transporte match {
+        case SUBTE => tarjeta.precioDeTarjeta(primerRecorrido)
+      }
+      case _ => tarjeta.precioDeTarjeta(primerRecorrido) + tarjeta.precioDeTarjeta(segundoRecorrido)
     }
 
-  def tiempoDelViaje: Double = {
-      return unRecorrido.tiempoBase + unRecorrido.tiempoDeCombinacionCon(otroRecorrido)
-    }
+  //  def tiempoDelViaje: Double = {
+  //      return unRecorrido.tiempoBase + unRecorrido.tiempoDeCombinacionCon(otroRecorrido)
+  //    }
 
 }

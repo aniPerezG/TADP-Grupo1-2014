@@ -177,3 +177,65 @@ java.lang.AssertionError: assertion failed: Expected exactly one type parameter,
 	at scala.collection.TraversableLike$WithFilter.foreach(TraversableLike.scala:777)
 	at scala.tools.nsc.interactive.Global.backgroundCompile(Global.scala:570)
 	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:25)
+2014-07-04 21:02:13,371 ERROR [Java indexing] - System.err - java.lang.OutOfMemoryError: Java heap space
+2014-07-04 21:02:13,436 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.compiler.util.HashtableOfObject.<init>(HashtableOfObject.java:39)
+2014-07-04 21:02:13,436 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.index.DiskIndex.readCategoryTable(DiskIndex.java:642)
+2014-07-04 21:02:13,436 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.index.DiskIndex.mergeCategory(DiskIndex.java:463)
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.index.DiskIndex.mergeCategories(DiskIndex.java:455)
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.index.DiskIndex.mergeWith(DiskIndex.java:549)
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.index.Index.save(Index.java:197)
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndex(IndexManager.java:859)
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndexes(IndexManager.java:901)
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.search.indexing.IndexManager.notifyIdle(IndexManager.java:618)
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.search.processing.JobManager.run(JobManager.java:388)
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - at java.lang.Thread.run(Thread.java:745)
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - -------------------- DEBUG --------------------
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - file = file:/home/ani/TADP-Grupo1-2014/.metadata/.plugins/org.eclipse.jdt.core/3628954598.index
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - offset = 334
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - size = 67502111
+2014-07-04 21:02:13,437 ERROR [Java indexing] - System.err - --------------------   END   --------------------
+2014-07-04 21:02:17,861 ERROR [Java indexing] - System.err - Exception in thread "Java indexing"
+2014-07-04 21:02:17,861 ERROR [Java indexing] - System.err - java.lang.OutOfMemoryError: Java heap space
+2014-07-04 21:02:17,861 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.compiler.util.HashtableOfObject.<init>(HashtableOfObject.java:39)
+2014-07-04 21:02:17,861 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.index.DiskIndex.readCategoryTable(DiskIndex.java:642)
+2014-07-04 21:02:17,861 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.index.DiskIndex.mergeCategory(DiskIndex.java:463)
+2014-07-04 21:02:17,862 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.index.DiskIndex.mergeCategories(DiskIndex.java:455)
+2014-07-04 21:02:17,862 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.index.DiskIndex.mergeWith(DiskIndex.java:549)
+2014-07-04 21:02:17,862 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.index.Index.save(Index.java:197)
+2014-07-04 21:02:17,862 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndex(IndexManager.java:859)
+2014-07-04 21:02:17,862 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndexes(IndexManager.java:901)
+2014-07-04 21:02:17,862 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.search.indexing.IndexManager.notifyIdle(IndexManager.java:618)
+2014-07-04 21:02:17,862 ERROR [Java indexing] - System.err - at org.eclipse.jdt.internal.core.search.processing.JobManager.run(JobManager.java:388)
+2014-07-04 21:02:17,862 ERROR [Java indexing] - System.err - at java.lang.Thread.run(Thread.java:745)
+2014-07-04 21:05:08,257 ERROR [main] - org.scala-ide.sdt.core - org.scala-ide.sdt.core - org.scala-ide.sdt.core - 0 - Error during askOption
+java.lang.AssertionError: assertion failed: Expected exactly one type parameter, found 0 [=> Array[comoViajo.Direccion]]
+	at scala.tools.nsc.Global.assert(Global.scala:252)
+	at scala.tools.eclipse.javaelements.ScalaJavaMapper$class.mapType(ScalaJavaMapper.scala:195)
+	at scala.tools.eclipse.ScalaPresentationCompiler.mapType(ScalaPresentationCompiler.scala:36)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$ValOwner$class.addVal(ScalaStructureBuilder.scala:577)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$Builder.addVal(ScalaStructureBuilder.scala:858)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser.traverse(ScalaStructureBuilder.scala:918)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.collection.immutable.List.foreach(List.scala:383)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser.traverse(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.collection.immutable.List.foreach(List.scala:383)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser.traverse(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.collection.immutable.List.foreach(List.scala:383)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser.traverse(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser.traverse(ScalaStructureBuilder.scala:890)
+	at scala.tools.eclipse.javaelements.ScalaCompilationUnit$$anonfun$buildStructure$2$$anonfun$apply$5$$anonfun$apply$1.apply$mcV$sp(ScalaCompilationUnit.scala:89)
+	at scala.tools.eclipse.javaelements.ScalaCompilationUnit$$anonfun$buildStructure$2$$anonfun$apply$5$$anonfun$apply$1.apply(ScalaCompilationUnit.scala:88)
+	at scala.tools.eclipse.javaelements.ScalaCompilationUnit$$anonfun$buildStructure$2$$anonfun$apply$5$$anonfun$apply$1.apply(ScalaCompilationUnit.scala:88)
+	at scala.tools.nsc.util.InterruptReq.execute(InterruptReq.scala:26)
+	at scala.tools.nsc.interactive.Global$$anonfun$pollForWork$1.apply$mcV$sp(Global.scala:446)
+	at scala.util.control.Breaks.breakable(Breaks.scala:38)
+	at scala.tools.nsc.interactive.Global.pollForWork(Global.scala:420)
+	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:22)
+2014-07-04 21:05:10,710 ERROR [Worker-6] - System.err - SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2014-07-04 21:05:10,720 ERROR [Worker-6] - System.err - SLF4J: Defaulting to no-operation (NOP) logger implementation
+2014-07-04 21:05:10,720 ERROR [Worker-6] - System.err - SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.

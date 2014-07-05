@@ -13,15 +13,9 @@ class Recorrido(var paradaDeSubida : Direccion, var paradaDeBajada: Direccion, v
           if (distancia < 6) 2.75 else 2.85
         }
     }
+    
 /*
-    def costoCombinado(combinacion : Recorrido) : Double = {
-    	return this.costoBase + transporte.costoDeCombinar(combinacion, combinacion.transporte)
-    }
-    
-    def costoCombinado(combinacion : Recorrido , unaTarjeta : Tarjeta) : Double = {
-    	return unaTarjeta.precioDeTarjeta(this) + transporte.costoDeCombinar(combinacion,combinacion.transporte, unaTarjeta)
-    }
-    
+      
     def tiempoBase : Double = {
       return transporte.tiempoRecorrido(this)
     }

@@ -2328,3 +2328,57 @@ org.eclipse.core.internal.resources.ResourceException: Resource '/comoViajo/src/
 	at java.lang.Thread.run(Thread.java:745)
 !SUBENTRY 1 org.eclipse.core.resources 4 368 2014-07-04 20:52:09.065
 !MESSAGE Resource '/comoViajo/src/funcionalObjetos/testsUnitarios.scala' does not exist.
+
+!ENTRY org.eclipse.jdt.core 4 4 2014-07-04 21:02:13.438
+!MESSAGE Background Indexer Crash Recovery
+!STACK 0
+java.lang.OutOfMemoryError: Java heap space
+	at org.eclipse.jdt.internal.compiler.util.HashtableOfObject.<init>(HashtableOfObject.java:39)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.readCategoryTable(DiskIndex.java:642)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.mergeCategory(DiskIndex.java:463)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.mergeCategories(DiskIndex.java:455)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.mergeWith(DiskIndex.java:549)
+	at org.eclipse.jdt.internal.core.index.Index.save(Index.java:197)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndex(IndexManager.java:859)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndexes(IndexManager.java:901)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.notifyIdle(IndexManager.java:618)
+	at org.eclipse.jdt.internal.core.search.processing.JobManager.run(JobManager.java:388)
+	at java.lang.Thread.run(Thread.java:745)
+!SESSION 2014-07-04 21:02:41.413 -----------------------------------------------
+eclipse.buildId=3.0.4-2.11-20140520-1158-Typesafe
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.scala-ide.sdt.core 4 0 2014-07-04 21:05:08.229
+!MESSAGE Error during askOption
+!STACK 0
+java.lang.AssertionError: assertion failed: Expected exactly one type parameter, found 0 [=> Array[comoViajo.Direccion]]
+	at scala.tools.nsc.Global.assert(Global.scala:252)
+	at scala.tools.eclipse.javaelements.ScalaJavaMapper$class.mapType(ScalaJavaMapper.scala:195)
+	at scala.tools.eclipse.ScalaPresentationCompiler.mapType(ScalaPresentationCompiler.scala:36)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$ValOwner$class.addVal(ScalaStructureBuilder.scala:577)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$Builder.addVal(ScalaStructureBuilder.scala:858)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser.traverse(ScalaStructureBuilder.scala:918)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.collection.immutable.List.foreach(List.scala:383)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser.traverse(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.collection.immutable.List.foreach(List.scala:383)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser.traverse(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser$$anonfun$traverse$1.apply(ScalaStructureBuilder.scala:937)
+	at scala.collection.immutable.List.foreach(List.scala:383)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser$TreeTraverser.traverse(ScalaStructureBuilder.scala:937)
+	at scala.tools.eclipse.javaelements.ScalaStructureBuilder$StructureBuilderTraverser.traverse(ScalaStructureBuilder.scala:890)
+	at scala.tools.eclipse.javaelements.ScalaCompilationUnit$$anonfun$buildStructure$2$$anonfun$apply$5$$anonfun$apply$1.apply$mcV$sp(ScalaCompilationUnit.scala:89)
+	at scala.tools.eclipse.javaelements.ScalaCompilationUnit$$anonfun$buildStructure$2$$anonfun$apply$5$$anonfun$apply$1.apply(ScalaCompilationUnit.scala:88)
+	at scala.tools.eclipse.javaelements.ScalaCompilationUnit$$anonfun$buildStructure$2$$anonfun$apply$5$$anonfun$apply$1.apply(ScalaCompilationUnit.scala:88)
+	at scala.tools.nsc.util.InterruptReq.execute(InterruptReq.scala:26)
+	at scala.tools.nsc.interactive.Global$$anonfun$pollForWork$1.apply$mcV$sp(Global.scala:446)
+	at scala.util.control.Breaks.breakable(Breaks.scala:38)
+	at scala.tools.nsc.interactive.Global.pollForWork(Global.scala:420)
+	at scala.tools.nsc.interactive.PresentationCompilerThread.run(PresentationCompilerThread.scala:22)
