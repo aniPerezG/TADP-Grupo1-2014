@@ -8,3 +8,12 @@ trait InformacionTransportes {
   def distanciaAPie (origen : Direccion, destino : Direccion): Int
 
 }
+
+class StubInformacionTransportes extends InformacionTransportes {
+
+  def transportesCerca(unaDireccion: Direccion): List[Transporte] = List() 
+  def dondeMeBajoCombinando (unaLinea : Colectivo, otraLinea: Colectivo ): Direccion = new Direccion("Medrano", 900)
+  def distanciaColectivo ( origen : Direccion, destino : Direccion): Int = 2000
+  def distanciaAPie (origen : Direccion, destino : Direccion): Int = 300
+
+}

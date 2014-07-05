@@ -1,3 +1,7 @@
+P=
+Xplugin=
+Xplugin-disable=
+Xplugin-require=
 eclipse.preferences.version=1
 formatter.alignParameters=false
 formatter.alignSingleLineCaseStatements=false
@@ -23,6 +27,9 @@ organizeimports.expandcollapse=expand
 organizeimports.groups=java$scala$org$com
 organizeimports.scalapackage=false
 organizeimports.wildcards=scalaz$scalaz.Scalaz
+scala.compiler.additionalParams=
+scala.compiler.sourceLevel=2.11
+scala.compiler.useProjectSettings=true
 syntaxColouring.bracket.backgroundColourEnabled=false
 syntaxColouring.bracket.bold=false
 syntaxColouring.bracket.colour=0,0,0

@@ -1,20 +1,11 @@
 package comoViajoTest
 
-import org.junit.Test
-import org.junit.Assert._
-import org.scalatest._
-import org.scalamock.MockFactoryBase
-import org.scalamock.scalatest
 import comoViajo._
-import org.scalamock.MockFunction
-import org.scalamock._
-import org.scalatest.mock.MockitoSugar
-import org.scalamock.MockFunction
 
+import org.junit.Assert._
+import org.junit.Test
 
-
-class pruebaTestCase extends FlatSpec with MockitoSugar  {
-
+class PruebaTestCase {
  
 	@Test
 		def testCreamosUnRecorridoYLePedimosSuCosto  =  {
@@ -28,13 +19,13 @@ class pruebaTestCase extends FlatSpec with MockitoSugar  {
 			paradas :+direc2
 			paradas :+direc3
 			
-			val informador = mock(classOf[InformacionTransportes])
+			val informador = new StubInformacionTransportes()
 			var linea17 = new Colectivo(informador,paradas)
 			val meSubo = new Direccion("onsari",800)
 			val meBajo = new Direccion("onsari", 3500)
 			var miRecorrido = new Recorrido (meSubo,meBajo,linea17)
 			
-			assert(miRecorrido.costoBase == 2.5)
+			assertTrue(2.5 == miRecorrido.costoBase)
 			
 	}
 }
