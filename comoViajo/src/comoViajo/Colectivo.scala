@@ -25,14 +25,14 @@ class Colectivo (val informadorTransportes: InformacionTransportes, var paradas:
     
     def tiempoRecorrido (unRecorrido : Recorrido) : Double = {
       
-      return this.distanciaARecorrer(unRecorrido) / 15000 * 60
+      return (this.distanciaARecorrer(unRecorrido) / 15000.0) * 60.0
     }
     
      
     def tiempoDeCombinacionEntre(unRecorrido : Recorrido ,combinacion : Recorrido, unTransporte : Transporte) : Double = {
        
       val distanciaEntreParadas = informadorTransportes.distanciaAPie( unRecorrido.paradaDeBajada,combinacion.paradaDeSubida)
-      return (distanciaEntreParadas / 100) * 2.5
+      return (distanciaEntreParadas / 100.0) * 2.5
 
     }
     

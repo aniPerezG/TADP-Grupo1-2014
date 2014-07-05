@@ -1,10 +1,10 @@
 package comoViajoTest
 
 import comoViajo._
-
 import org.junit.Assert._
 import org.junit.Test
 import org.junit.Before
+import scala.collection.mutable.MutableList
 
 class PlanificadorDeViajesTest {
   
@@ -86,21 +86,34 @@ def setUp  = new {
       val viajeCombinadoTrenYSubte= new ViajeCompuesto(recorridoEnSubteB,recorridoEnTren)
       val viajeCombinadoColectivoYTren = new ViajeCompuesto(recorridoEnColectivo,recorridoEnTren)
     	
-    	var listaDeViajes = List(viajeEnColectivo,viajeEnSubte,viajeCombinadoColectivoYTren,viajeCombinadoTrenYSubte)
-    	val planificador = new PlanificadorViaje()
+    	var listaDeViajes = MutableList(viajeEnColectivo,viajeEnSubte,viajeCombinadoColectivoYTren,viajeCombinadoTrenYSubte)
+    	val planificador = new PlanificadorViaje(informador,listaDeViajes)
+    	
+    	val menorCosto = new MenorCosto()
+    	val menorTiempo = new MenorTiempo()
   }
 
+  @Test
   def elPlanificadorMeDevuelveElViajeDeMenorCosto {
  
+    val seteo = setUp
     
-    
-    
-    
+    var viajeMasBarato = seteo.planificador.viajeMasConveniente(seteo.menorCosto)
+    assertTrue(viajeMasBarato == seteo.viajeEnColectivo)
+   
   }
-  
+   
+  @Test
   def elPlanificadorMeDevuelveElViajeDeMenorTiempo {
     
+    val seteo = setUp
+    
+    var viajeMasRapido = seteo.planificador.viajeMasConveniente(seteo.menorCosto)
+    assertTrue(viajeMasRapido == seteo.viajeEnColectivo)
+    
   }
+
+
 
 
 
