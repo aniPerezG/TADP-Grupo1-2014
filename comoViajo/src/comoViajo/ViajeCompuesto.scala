@@ -11,7 +11,7 @@ class ViajeCompuesto (var unRecorrido : Recorrido, var otroRecorrido : Recorrido
     }
 
   def tiempoDelViaje: Double = {
-      return unRecorrido.tiempoBase + unRecorrido.tiempoDeCombinacionCon(otroRecorrido)
+      return unRecorrido.tiempoBase + unRecorrido.tiempoDeCombinacionCon(otroRecorrido) +unRecorrido.tiempoBase
     }
 
 }
