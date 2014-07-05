@@ -6,10 +6,9 @@ import org.junit.Assert._
 import org.junit.Test
 import org.junit.Before
 
-class TiemposTest {
+class PlanificadorDeViajesTest {
   
-  
-    def setUp  = new {
+def setUp  = new {
     	val paradaColec1 = new Direccion("Onsari", 600)
 			val paradaColec2 = new Direccion("Onsari",2500 )
 			val paradaColec3 = new Direccion("Onsari" ,3500)
@@ -75,79 +74,34 @@ class TiemposTest {
     	var sarmiento : Tren = new Tren(informador,paradasDeTren)
 		
     	sarmiento.tablaDePrecios = tablaDePreciosDelTren
-      
-    }
-    
-    @Test
-    def elTiempoDeUnViajeEnMicroSimpleLoDeterminaSuRecorrido {
-      val seteo = setUp
-      
-			val recorridoEnColectivo = new Recorrido (seteo.paradaColec1,seteo.paradaColec2,seteo.linea17)
-    	val viajeEnColectivo = new ViajeSimple(recorridoEnColectivo)
-      
-      assertTrue(60 == viajeEnColectivo.tiempoDelViaje)
-    }
-    
-    @Test
-    def elTiempoDeUnViajeSimpleEnSubteLoDeterminaSuRecorrido {
-      val seteo = setUp
-    
-      val recorridoEnSubte = new Recorrido(seteo.paradaSubteB1,seteo.paradaSubteB5,seteo.lineaB)
-      val viajeEnSubte = new ViajeSimple(recorridoEnSubte)
-      
-      assertTrue(8 == viajeEnSubte.tiempoDelViaje)
-    }
-    
-    @Test
-    def elTiempoDeUnViajeSimpleEnTrenLoDeterminaSuRecorrido {
-      val seteo = setUp
-      
-      val recorridoEnTren = new Recorrido(seteo.paradaTren4,seteo.paradaTren5,seteo.sarmiento)
-      val viajeEnTren = new ViajeSimple(recorridoEnTren)
-      
-      assertTrue(3 == viajeEnTren.tiempoDelViaje)
-    }
-    
-    @Test
-    def elTiempoDeUnViajeCombinandoUnTrenYUnBondiEsLaSumaDeSusRecorridosMásLoQueTardaLaCombinacion {
-      val seteo = setUp
-      
-      val recorridoEnTren = new Recorrido(seteo.paradaTren4,seteo.paradaTren5,seteo.sarmiento)
-			val recorridoEnColectivo = new Recorrido (seteo.paradaColec1,seteo.paradaColec2,seteo.linea17)
-      
-      val viajeCompuesto = new ViajeCompuesto(recorridoEnColectivo,recorridoEnTren)
-      
-      assertTrue(70.5 == viajeCompuesto.tiempoDelViaje)
+    	
+    	val recorridoEnColectivo = new Recorrido (paradaColec1,paradaColec2,linea17)
+    	val recorridoEnSubteB = new Recorrido(paradaSubteB1,paradaSubteB5,lineaB)
+    	val recorridoEnSubteD = new Recorrido(paradaSubteD1,paradaSubteD3,lineaD)
+    	val recorridoEnTren = new Recorrido(paradaTren4,paradaTren5,sarmiento)
+    	
+    	
+    	val viajeEnColectivo = new ViajeSimple(recorridoEnColectivo)	
+      val viajeEnSubte = new ViajeCompuesto(recorridoEnSubteB,recorridoEnSubteD)    	
+      val viajeCombinadoTrenYSubte= new ViajeCompuesto(recorridoEnSubteB,recorridoEnTren)
+      val viajeCombinadoColectivoYTren = new ViajeCompuesto(recorridoEnColectivo,recorridoEnTren)
+    	
+    	var listaDeViajes = List(viajeEnColectivo,viajeEnSubte,viajeCombinadoColectivoYTren,viajeCombinadoTrenYSubte)
+    	val planificador = new PlanificadorViaje()
+  }
 
-    }
+  def elPlanificadorMeDevuelveElViajeDeMenorCosto {
+ 
     
-    @Test
-    def elTiempoDeUnViajeCombinandoUnTrenYUnSubteEsLaSumaDeSusRecorridosMásLoQueTardaLaCombinacion {
-      val seteo = setUp
-      
-      val recorridoEnTren = new Recorrido(seteo.paradaTren4,seteo.paradaTren5,seteo.sarmiento)
-      val recorridoEnSubte = new Recorrido(seteo.paradaSubteB1,seteo.paradaSubteB5,seteo.lineaB)
-      
-      val viajeCompuesto = new ViajeCompuesto(recorridoEnSubte,recorridoEnTren)
-      
-      assertTrue(16 == viajeCompuesto.tiempoDelViaje)
+    
+    
+    
+  }
+  
+  def elPlanificadorMeDevuelveElViajeDeMenorTiempo {
+    
+  }
 
-    }
-    
-    @Test
-    def elTiempoDeUnViajeCombinandoDosSubtesEsLaSumaDeSusRecorridosMásLoQueTardaLaCombinacion {
-      val seteo = setUp
-      
-      val recorridoEnSubteB = new Recorrido(seteo.paradaSubteB1,seteo.paradaSubteB5,seteo.lineaB)
-      val recorridoEnSubteD = new Recorrido(seteo.paradaSubteD1,seteo.paradaSubteD3,seteo.lineaD)
-      val viajeEnSubte = new ViajeCompuesto(recorridoEnSubteB,recorridoEnSubteD)
-      
-      assertTrue(16 == viajeEnSubte.tiempoDelViaje)
 
-    }
-    
-    
-    
-    
 
 }

@@ -11,16 +11,31 @@ class Subte(val informadorTransportes: InformacionTransportes, var paradas: Arra
       return 2 * this.paradasDe(unRecorrido)
     }
  
-  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, otroSubte : Transporte) : Double = {
+//  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, otroSubte : Transporte) : Double = {
+//      return 4
+//  }
+//  
+//  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, unTren : Tren) : Double = {
+//      return 5
+//  }
+//  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, unColectivo : Colectivo) : Double = {
+//      return unColectivo.tiempoDeCombinacionEntre(unRecorrido, otroRecorrido, this)
+//  }
+  
+  def  tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, otroTransporte : Transporte) : Double = {
+    
+    val unColectivo = new Colectivo(informadorTransportes,Array())
+    val unTren = new Tren(informadorTransportes,Array())
+    
+    if(otroTransporte.getClass().equals(this.getClass())) {
       return 4
-  }
-  
-  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, unTren : Tren) : Double = {
+    }
+    else if(otroTransporte.getClass().equals(unColectivo.getClass())){
+      return otroTransporte.tiempoDeCombinacionEntre(otroRecorrido, unRecorrido, this)
+    }
+    else {
       return 5
-  }
-  
-  def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, unColectivo : Colectivo) : Double = {
-      return unColectivo.tiempoDeCombinacionEntre(unRecorrido, otroRecorrido, this)
+    }
   }
   
   override def costoDeCombinar(combinacion: Recorrido, unTransporte: Transporte) : Double = {
