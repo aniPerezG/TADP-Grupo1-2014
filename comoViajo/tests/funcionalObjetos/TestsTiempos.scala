@@ -15,6 +15,7 @@ import comoViajo.TarjetaDiscapacitado
 import comoViajo.TarjetaTrabajador
 import comoViajo.ViajeSimple
 import comoViajo.TarjetaTurista
+import comoViajo.ViajeCompuesto
 
 class TestsTiempos {
 
@@ -112,4 +113,41 @@ class TestsTiempos {
     assertEquals(3 , viajeEnTren.tiempoDelViaje, 0.1)
   }
 
+    @Test
+    def elTiempoDeUnViajeCombinandoUnTrenYUnBondiEsLaSumaDeSusRecorridosMásLoQueTardaLaCombinacion {
+      val seteo = setUp
+      
+      val recorridoEnTren = new Recorrido(seteo.paradaTren4,seteo.paradaTren5,seteo.sarmiento)
+			val recorridoEnColectivo = new Recorrido (seteo.paradaColec1,seteo.paradaColec2,seteo.linea17)
+      
+      val viajeCompuesto = new ViajeCompuesto(recorridoEnColectivo,recorridoEnTren)
+      
+      assertEquals(70.5 , viajeCompuesto.tiempoDelViaje, 0.1)
+
+    }
+    
+    @Test
+    def elTiempoDeUnViajeCombinandoUnTrenYUnSubteEsLaSumaDeSusRecorridosMásLoQueTardaLaCombinacion {
+      val seteo = setUp
+      
+      val recorridoEnTren = new Recorrido(seteo.paradaTren4,seteo.paradaTren5,seteo.sarmiento)
+      val recorridoEnSubte = new Recorrido(seteo.paradaSubteB1,seteo.paradaSubteB5,seteo.lineaB)
+      
+      val viajeCompuesto = new ViajeCompuesto(recorridoEnSubte,recorridoEnTren)
+      
+      assertEquals(16 , viajeCompuesto.tiempoDelViaje, 0.1)
+
+    }
+    
+    @Test
+    def elTiempoDeUnViajeCombinandoDosSubtesEsLaSumaDeSusRecorridosMásLoQueTardaLaCombinacion {
+      val seteo = setUp
+      
+      val recorridoEnSubteB = new Recorrido(seteo.paradaSubteB1,seteo.paradaSubteB5,seteo.lineaB)
+      val recorridoEnSubteD = new Recorrido(seteo.paradaSubteD1,seteo.paradaSubteD3,seteo.lineaD)
+      val viajeEnSubte = new ViajeCompuesto(recorridoEnSubteB,recorridoEnSubteD)
+      
+      assertEquals(16 , viajeEnSubte.tiempoDelViaje, 0.1)
+
+    }
 }

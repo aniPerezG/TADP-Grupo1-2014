@@ -26,7 +26,11 @@ class ViajeCompuesto(var unRecorrido: Recorrido, var otroRecorrido: Recorrido) e
       case _ => tarjeta.precioDeTarjeta(primerRecorrido) + tarjeta.precioDeTarjeta(segundoRecorrido)
     }
 
-  def tiempoDelViaje: Double = (unRecorrido.transporte, otroRecorrido.transporte) match {
+  def tiempoDelViaje: Double = {
+    unRecorrido.tiempoBase + otroRecorrido.tiempoBase + this.tiempoDeCombinacion
+  }
+
+  def tiempoDeCombinacion: Double = (unRecorrido.transporte, otroRecorrido.transporte) match {
     case (SUBTE(_, _), SUBTE(_, _)) => 4
     case (TREN(_, _, _), SUBTE(_, _)) | (SUBTE(_, _), TREN(_, _, _)) => 5
     case (TREN(_, _, _), TREN(_, _, _)) => 6
