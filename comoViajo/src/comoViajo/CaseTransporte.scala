@@ -23,7 +23,12 @@ abstract class CaseTransporte  {
 }
 
 case class SUBTE(paradas: Array[Direccion], informador: InformacionTransportes) extends CaseTransporte
-case class COLECTIVO(paradas: Array[Direccion], informador: InformacionTransportes) extends CaseTransporte
+case class COLECTIVO(paradas: Array[Direccion], informador: InformacionTransportes) extends CaseTransporte {
+  def tiempoCombinacion(paradaBajada : Direccion, paradaSubida : Direccion): Double = {
+    var distanciaEntreParadas = this.informador.distanciaAPie(paradaBajada, paradaSubida)
+    return (distanciaEntreParadas / 100) * 2.5
+  }
+}
 case class TREN(paradas: Array[Direccion], informador: InformacionTransportes, tablaDePrecios: Map[Int,Double] = Map()) extends CaseTransporte {
   def costo (recorrido : Recorrido) : Double = {
        var cantParadas = this.paradasDe(recorrido)

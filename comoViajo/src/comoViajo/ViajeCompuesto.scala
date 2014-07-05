@@ -30,13 +30,10 @@ class ViajeCompuesto(var unRecorrido: Recorrido, var otroRecorrido: Recorrido) e
     case (SUBTE(_, _), SUBTE(_, _)) => 4
     case (TREN(_, _, _), SUBTE(_, _)) | (SUBTE(_, _), TREN(_, _, _)) => 5
     case (TREN(_, _, _), TREN(_, _, _)) => 6
-    case (COLECTIVO(paradas, informador), _) => tiempoDelColectivo(COLECTIVO(paradas, informador))
-    case (_, COLECTIVO(paradas, informador)) => tiempoDelColectivo(COLECTIVO(paradas, informador))
-  }
-
-  def tiempoDelColectivo(colectivo: COLECTIVO): Double = {
-    var distanciaEntreParadas = colectivo.informador.distanciaAPie(unRecorrido.paradaDeBajada, otroRecorrido.paradaDeSubida)
-    return (distanciaEntreParadas / 100) * 2.5
+    case (COLECTIVO(paradas, informador), _) => 
+      COLECTIVO(paradas, informador).tiempoCombinacion(unRecorrido.paradaDeBajada , otroRecorrido.paradaDeSubida)
+    case (_, COLECTIVO(paradas, informador)) => 
+       COLECTIVO(paradas, informador).tiempoCombinacion(unRecorrido.paradaDeBajada , otroRecorrido.paradaDeSubida)
   }
 
 }
