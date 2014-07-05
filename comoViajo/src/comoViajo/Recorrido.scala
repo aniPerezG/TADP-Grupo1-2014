@@ -14,12 +14,16 @@ class Recorrido(var paradaDeSubida : Direccion, var paradaDeBajada: Direccion, v
         }
     }
     
-/*
       
-    def tiempoBase : Double = {
-      return transporte.tiempoRecorrido(this)
-    }
+    def tiempoBase : Double = transporte match{
+      case SUBTE => SUBTE.paradasDe(this) * 2
+      case TREN(tabla) => TREN(tabla).paradasDe(this) * 3
+      case COLECTIVO => 
+        var distancia = informador.distanciaColectivo(paradaDeSubida , paradaDeBajada )
+        distancia / 15000 * 60
+      }
 
+    /*
     def tiempoDeCombinacionCon(recorrido: Recorrido) : Double = {
    
        return transporte.tiempoDeCombinacionEntre(this, recorrido, recorrido.transporte)
