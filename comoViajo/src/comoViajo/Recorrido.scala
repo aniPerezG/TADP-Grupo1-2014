@@ -35,7 +35,7 @@ class Recorrido(var paradaDeSubida: Direccion, var paradaDeBajada: Direccion, va
     case TREN(paradas,informador,tabla) => TREN(paradas,informador,tabla).paradasDe(this) * 3
     case COLECTIVO(_,informador)=>
       var distancia = informador.distanciaColectivo(paradaDeSubida, paradaDeBajada)
-      return distancia / 15000 * 60
+      return distancia / 15000.00 * 60.00
       
   }
 

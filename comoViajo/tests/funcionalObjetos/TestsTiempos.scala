@@ -90,7 +90,7 @@ class TestsTiempos {
     val recorridoEnColectivo = new Recorrido(seteo.paradaColec1, seteo.paradaColec2, seteo.linea17)
     val viajeEnColectivo = new ViajeSimple(recorridoEnColectivo)
 
-    assertEquals(60, viajeEnColectivo.tiempoDelViaje, 0.1)
+    assertEquals(8, viajeEnColectivo.tiempoDelViaje, 0.1)
   }
 
   @Test
@@ -122,7 +122,7 @@ class TestsTiempos {
       
       val viajeCompuesto = new ViajeCompuesto(recorridoEnColectivo,recorridoEnTren)
       
-      assertEquals(70.5 , viajeCompuesto.tiempoDelViaje, 0.1)
+      assertEquals(18.5 , viajeCompuesto.tiempoDelViaje, 0.1)
 
     }
     
