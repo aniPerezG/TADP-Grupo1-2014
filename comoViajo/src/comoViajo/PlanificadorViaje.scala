@@ -40,11 +40,11 @@ class PlanificadorViaje(val informador: InformacionTransportes, var listaDeViaje
     listaDeViajes += new ViajeCompuesto(unRecorrido, otroRecorrido)
   }
 
-  def viajeMasConveniente(unCriterio: CriterioDeSeleccion, listaDeViajes: MutableList[Viaje]): Viaje = {
+  def viajeMasConveniente(unCriterio: CriterioDeSeleccion): Viaje = {
     return unCriterio.seleccionar(listaDeViajes)
   }
 
-  def viajeMasConveniente(unCriterio: CriterioDeSeleccion, listaDeViajes: MutableList[Viaje], unaTarjeta: Tarjeta): Viaje = {
+  def viajeMasConveniente(unCriterio: CriterioDeSeleccion, unaTarjeta: Tarjeta): Viaje = {
     return unCriterio.seleccionar(listaDeViajes, unaTarjeta)
   }
 

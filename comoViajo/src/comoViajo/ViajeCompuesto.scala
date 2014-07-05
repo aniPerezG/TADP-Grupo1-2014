@@ -11,18 +11,14 @@ class ViajeCompuesto(var unRecorrido: Recorrido, var otroRecorrido: Recorrido) e
   }
 
   def costoCombinar(primerRecorrido: Recorrido, segundoRecorrido: Recorrido) =
-    primerRecorrido.transporte match {
-      case SUBTE(_, _) => segundoRecorrido.transporte match {
-        case SUBTE(_, _) => primerRecorrido.costoBase
-      }
+    (primerRecorrido.transporte, segundoRecorrido.transporte) match {
+      case (SUBTE(_, _), SUBTE(_, _)) => primerRecorrido.costoBase
       case _ => primerRecorrido.costoBase + segundoRecorrido.costoBase
     }
 
   def costoCombinar(primerRecorrido: Recorrido, segundoRecorrido: Recorrido, tarjeta: Tarjeta) =
-    primerRecorrido.transporte match {
-      case SUBTE(_, _) => segundoRecorrido.transporte match {
-        case SUBTE(_, _) => tarjeta.precioDeTarjeta(primerRecorrido)
-      }
+    (primerRecorrido.transporte, segundoRecorrido.transporte) match {
+      case (SUBTE(_, _), SUBTE(_, _)) => tarjeta.precioDeTarjeta(primerRecorrido)
       case _ => tarjeta.precioDeTarjeta(primerRecorrido) + tarjeta.precioDeTarjeta(segundoRecorrido)
     }
 
