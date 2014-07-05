@@ -16,7 +16,7 @@ import comoViajo.TarjetaTrabajador
 import comoViajo.ViajeSimple
 import comoViajo.TarjetaTurista
 
-class TestsUnitarios {
+class TestsCostos {
 
   def setUp() = new {
     val paradaColec1 = new Direccion("Onsari", 600)
