@@ -26,7 +26,7 @@ class PlanificadorViaje(val informador: InformacionTransportes, var listaDeViaje
 
   def armarViajeSimple(unTransporte: CaseTransporte, origen: Direccion, destino: Direccion) = {
 
-    var unRecorrido: Recorrido = new Recorrido(origen, destino, unTransporte, informador)
+    var unRecorrido: Recorrido = new Recorrido(origen, destino, unTransporte)
     listaDeViajes += new ViajeSimple(unRecorrido)
 
   }
@@ -34,8 +34,8 @@ class PlanificadorViaje(val informador: InformacionTransportes, var listaDeViaje
   def armarViajeCompuesto(unTransporte: CaseTransporte, otroTransporte: CaseTransporte, origen: Direccion, destino: Direccion) = {
 
     var paradaIntermedia: Direccion = unTransporte.interseccionCon(otroTransporte)
-    var unRecorrido: Recorrido = new Recorrido(origen, paradaIntermedia, unTransporte, informador)
-    var otroRecorrido: Recorrido = new Recorrido(paradaIntermedia, destino, otroTransporte, informador)
+    var unRecorrido: Recorrido = new Recorrido(origen, paradaIntermedia, unTransporte)
+    var otroRecorrido: Recorrido = new Recorrido(paradaIntermedia, destino, otroTransporte)
 
     listaDeViajes += new ViajeCompuesto(unRecorrido, otroRecorrido)
   }
