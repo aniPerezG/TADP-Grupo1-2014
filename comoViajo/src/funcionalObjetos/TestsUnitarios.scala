@@ -22,7 +22,7 @@ class TestsUnitarios {
     var segundaDire: Direccion = new Direccion("scalabrini", 1600)
     var unRecorrido: Recorrido = new Recorrido(primeraDire, segundaDire, SUBTE(paradas, informador))
     
-    assertEquals(4.5, unRecorrido.costoBase)
+    assertEquals(4.5, unRecorrido.costoBase, 0.1)
     
   }
 }
