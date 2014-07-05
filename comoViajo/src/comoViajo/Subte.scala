@@ -2,6 +2,7 @@ package comoViajo
 
 class Subte(val informadorTransportes: InformacionTransportes, var paradas: Array[Direccion])  extends Transporte{ 
   
+  type T = Subte
   
   def costoRecorrido(unRecorrido : Recorrido) =  4.50 
   
@@ -22,12 +23,24 @@ class Subte(val informadorTransportes: InformacionTransportes, var paradas: Arra
       return unColectivo.tiempoDeCombinacionEntre(unRecorrido, otroRecorrido, this)
   }
   
-  def costoDeCombinar(combinacion: Recorrido, unSubte: Subte) : Double = {
-    return 0
-  }
+  override def costoDeCombinar(combinacion: Recorrido, unTransporte: Transporte) : Double = {
+      if(unTransporte.getClass().equals(this.getClass())) {
+    	  return 0.0  
+      }
+      else {
+        return combinacion.costoBase
+      }
+  }//Sabemos que es un typetest pero no tenemos idea de como para que no tome Transporte, antes teníamos el método que recibía
+   //un subte y listo. Pero no le da bola y entra directo en el que recibe el trait. No sabemos como pasar por parámetro "algo 
+   // que extienda al trait
   
-  def costoDeCombinar(combinacion : Recorrido, unSubte : Subte, unaTarjeta : Tarjeta) : Double = {
-    return 0
+  override def costoDeCombinar(combinacion : Recorrido, unTransporte: Transporte, unaTarjeta : Tarjeta) : Double = {
+    if(unTransporte.getClass().equals(this.getClass())) {
+    	  return 0.0  
+     }
+    else {
+    	return unaTarjeta.precioDeTarjeta(combinacion)
+    }
   }
 
 }

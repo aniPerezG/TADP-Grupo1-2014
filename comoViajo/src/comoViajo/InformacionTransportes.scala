@@ -1,6 +1,6 @@
 package comoViajo
 
-trait InformacionTransportes {
+trait InformacionTransportes  {
   
   def transportesCerca(unaDireccion: Direccion): List[Transporte] //TODO Agregar un mapa con el transporte y la parada
   def dondeMeBajoCombinando (unaLinea : Colectivo, otraLinea: Colectivo ): Direccion

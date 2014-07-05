@@ -35,4 +35,8 @@ class Colectivo (val informadorTransportes: InformacionTransportes, var paradas:
       return (distanciaEntreParadas / 100) * 2.5
 
     }
+    
+    def costoDeCombinar(combinacion : Recorrido, unSubte :Subte) : Double = {
+      return combinacion.costoBase
+    }
 }

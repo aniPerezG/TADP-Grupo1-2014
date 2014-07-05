@@ -1,7 +1,7 @@
 package comoViajo
 
-trait Transporte {
-  
+trait Transporte{
+
   val informadorTransportes: InformacionTransportes
   var paradas: Array[Direccion] //Usamos un array porque tiene que estar ordenado
   
@@ -25,11 +25,14 @@ trait Transporte {
   def transportesVecinosEntre(): Array[Transporte] = {
        
       return paradas.flatMap{unaParada => informadorTransportes.transportesCerca(unaParada)}
-  }
+  } 
 
+  //def costoDeCombinar(combinacion : Recorrido, unSubte :Subte) : Double
+  
   def costoDeCombinar(combinacion: Recorrido, unTransporte: Transporte) : Double = {
     return combinacion.costoBase
   }
+  
   
   def costoDeCombinar(combinacion : Recorrido, unTransporte : Transporte, unaTarjeta : Tarjeta) : Double = {
     return unaTarjeta.precioDeTarjeta(combinacion)

@@ -32,5 +32,9 @@ class Tren(val informadorTransportes: InformacionTransportes, var paradas: Array
     def tiempoDeCombinacionEntre(unRecorrido : Recorrido , otroRecorrido : Recorrido, unColectivo : Colectivo) : Double = {
         return unColectivo.tiempoDeCombinacionEntre(unRecorrido, otroRecorrido, this)
     }
+    
+    def costoDeCombinar(combinacion : Recorrido, unSubte :Subte) : Double = {
+      return combinacion.costoBase
+    }
          
 }
