@@ -11,17 +11,14 @@ class PlanificadorViaje(val informador: InformacionTransportes, var listaDeViaje
     var transportesCercaDelDestino = informador.transportesCerca(destino)
 
     transportesCercaDelOrigen.foreach { unTransporte =>
-      if (transportesCercaDelDestino.contains(unTransporte)) {
-        this.armarViajeSimple(unTransporte, origen, destino)
-      }
+      if (transportesCercaDelDestino.contains(unTransporte)) this.armarViajeSimple(unTransporte, origen, destino)
+
       var transportesVecinosQueLlegan = unTransporte.transportesVecinosEntre().filter { transporteVecino => transportesCercaDelDestino.contains(transporteVecino) }
       transportesVecinosQueLlegan.foreach { otroTransporte => this.armarViajeCompuesto(unTransporte, otroTransporte, origen, destino) }
     }
-    if (listaDeViajes.isEmpty) {
-      throw new RuntimeException("No hay viajes posibles")
-    }
-    return listaDeViajes
+    if (listaDeViajes.isEmpty) throw new RuntimeException("No hay viajes posibles")
 
+    listaDeViajes
   }
 
   def armarViajeSimple(unTransporte: CaseTransporte, origen: Direccion, destino: Direccion) = {
@@ -40,12 +37,8 @@ class PlanificadorViaje(val informador: InformacionTransportes, var listaDeViaje
     listaDeViajes += new ViajeCompuesto(unRecorrido, otroRecorrido)
   }
 
-  def viajeMasConveniente(unCriterio: CriterioDeSeleccion): Viaje = {
-    return unCriterio.seleccionar(listaDeViajes)
-  }
+  def viajeMasConveniente(unCriterio: CriterioDeSeleccion): Viaje = unCriterio.seleccionar(listaDeViajes)
 
-  def viajeMasConveniente(unCriterio: CriterioDeSeleccion, unaTarjeta: Tarjeta): Viaje = {
-    return unCriterio.seleccionar(listaDeViajes, unaTarjeta)
-  }
+  def viajeMasConveniente(unCriterio: CriterioDeSeleccion, unaTarjeta: Tarjeta): Viaje = unCriterio.seleccionar(listaDeViajes, unaTarjeta)
 
 }
