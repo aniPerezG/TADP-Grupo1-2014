@@ -20,38 +20,95 @@ import scala.collection.mutable.MutableList
 import comoViajo.PlanificadorViaje
 import comoViajo.MenorCosto
 import comoViajo.MenorTiempo
+import org.junit.Before
+import comoViajo.MenorCosto
+import comoViajo.MenorTiempo
+import comoViajo.PlanificadorViaje
 
 class TestsPlanificador {
 
-  def setUp = new {
-    val paradaColec1 = new Direccion("Onsari", 600)
-    val paradaColec2 = new Direccion("Onsari", 2500)
-    val paradaColec3 = new Direccion("Onsari", 3500)
+  var paradaColec1: Direccion = _
+  var paradaColec2: Direccion = _
+  var paradaColec3: Direccion = _
 
-    val paradaSubteB1 = new Direccion("Corrientes", 5000)
-    val paradaSubteB2 = new Direccion("Corrientes", 4500)
-    val paradaSubteB3 = new Direccion("Corrientes", 4000)
-    val paradaSubteB4 = new Direccion("Corrientes", 3500)
-    val paradaSubteB5 = new Direccion("Corrientes", 3000)
+  var paradaSubteB1: Direccion = _
+  var paradaSubteB2: Direccion = _
+  var paradaSubteB3: Direccion = _
+  var paradaSubteB4: Direccion = _
+  var paradaSubteB5: Direccion = _
 
-    val paradaSubteD1 = new Direccion("Corrientes", 5000)
-    val paradaSubteD2 = new Direccion("Santa Fe", 4200)
-    val paradaSubteD3 = new Direccion("Santa Fe", 3400)
-    val paradaSubteD4 = new Direccion("Santa Fe", 2600)
-    val paradaSubteD5 = new Direccion("Santa Fe", 1800)
+  var paradaSubteD1: Direccion = _
+  var paradaSubteD2: Direccion = _
+  var paradaSubteD3: Direccion = _
+  var paradaSubteD4: Direccion = _
+  var paradaSubteD5: Direccion = _
 
-    val paradaTren1 = new Direccion("La via", 0)
-    val paradaTren2 = new Direccion("La via", 1000)
-    val paradaTren3 = new Direccion("La via", 3000)
-    val paradaTren4 = new Direccion("La via", 5000)
-    val paradaTren5 = new Direccion("La via", 7000)
-    val paradaTren6 = new Direccion("La via", 9000)
-    val paradaTren7 = new Direccion("La via", 11000)
+  var paradaTren1: Direccion = _
+  var paradaTren2: Direccion = _
+  var paradaTren3: Direccion = _
+  var paradaTren4: Direccion = _
+  var paradaTren5: Direccion = _
+  var paradaTren6: Direccion = _
+  var paradaTren7: Direccion = _
 
-    var paradasDeColec: Array[Direccion] = new Array[Direccion](3)
-    var paradasDeSubteB: Array[Direccion] = new Array[Direccion](5)
-    var paradasDeSubteD: Array[Direccion] = new Array[Direccion](5)
-    var paradasDeTren: Array[Direccion] = new Array[Direccion](7)
+  var paradasDeColec: Array[Direccion] = _
+  var paradasDeSubteB: Array[Direccion] = _
+  var paradasDeSubteD: Array[Direccion] = _
+  var paradasDeTren: Array[Direccion] = _
+
+  var tablaDePreciosDelTren: Map[Int, Double] = _
+
+  var informador: StubInformacionTransportes = _
+  var linea17: COLECTIVO = _
+  var lineaB: SUBTE = _
+  var lineaD: SUBTE = _
+  var sarmiento: TREN = _
+  
+  var planificador : PlanificadorViaje = _
+  
+  var menorCosto : MenorCosto = _
+  var menorTiempo : MenorTiempo = _
+  
+  var recorridoEnColectivo = new Recorrido(paradaColec1, paradaColec2, linea17)
+  var recorridoEnSubteB = new Recorrido(paradaSubteB1, paradaSubteB5, lineaB)
+  var recorridoEnSubteD = new Recorrido(paradaSubteD1, paradaSubteD3, lineaD)
+  var recorridoEnTren = new Recorrido(paradaTren4, paradaTren5, sarmiento)
+
+  var viajeEnColectivo : ViajeSimple = _
+  var viajeEnSubte : ViajeCompuesto = _
+  var viajeCombinadoTrenYSubte : ViajeCompuesto = _
+  var viajeCombinadoColectivoYTren : ViajeCompuesto = _
+
+  @Before
+  def setUp =  {
+    paradaColec1 = new Direccion("Onsari", 600)
+    paradaColec2 = new Direccion("Onsari", 2500)
+    paradaColec3 = new Direccion("Onsari", 3500)
+
+    paradaSubteB1 = new Direccion("Corrientes", 5000)
+    paradaSubteB2 = new Direccion("Corrientes", 4500)
+    paradaSubteB3 = new Direccion("Corrientes", 4000)
+    paradaSubteB4 = new Direccion("Corrientes", 3500)
+    paradaSubteB5 = new Direccion("Corrientes", 3000)
+
+    paradaSubteD1 = new Direccion("Corrientes", 5000)
+    paradaSubteD2 = new Direccion("Santa Fe", 4200)
+    paradaSubteD3 = new Direccion("Santa Fe", 3400)
+    paradaSubteD4 = new Direccion("Santa Fe", 2600)
+    paradaSubteD5 = new Direccion("Santa Fe", 1800)
+
+    paradaTren1 = new Direccion("La via", 0)
+    paradaTren2 = new Direccion("La via", 1000)
+    paradaTren3 = new Direccion("La via", 3000)
+    paradaTren4 = new Direccion("La via", 5000)
+    paradaTren5 = new Direccion("La via", 7000)
+    paradaTren6 = new Direccion("La via", 9000)
+    paradaTren7 = new Direccion("La via", 11000)
+
+    paradasDeColec = new Array[Direccion](3)
+    paradasDeSubteB = new Array[Direccion](5)
+    paradasDeSubteD = new Array[Direccion](5)
+    paradasDeTren = new Array[Direccion](7)
 
     paradasDeColec :+= paradaColec1
     paradasDeColec :+= paradaColec2
@@ -77,49 +134,45 @@ class TestsPlanificador {
     paradasDeTren :+= paradaTren6
     paradasDeTren :+= paradaTren7
 
-    var tablaDePreciosDelTren = Map(3 -> 2.0, 5 -> 4.5, 7 -> 8.75)
+    tablaDePreciosDelTren = Map(3 -> 2.0, 5 -> 4.5, 7 -> 8.75)
 
-    val informador = new StubInformacionTransportes()
-    var linea17 = COLECTIVO (paradasDeColec, informador)
-    var lineaB = SUBTE(paradasDeSubteB, informador)
-    var lineaD = SUBTE(paradasDeSubteD, informador)
-    var sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren)
+    informador = new StubInformacionTransportes()
+    linea17 = COLECTIVO (paradasDeColec, informador)
+    lineaB = SUBTE(paradasDeSubteB, informador)
+    lineaD = SUBTE(paradasDeSubteD, informador)
+    sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren)
 
 
-    val recorridoEnColectivo = new Recorrido(paradaColec1, paradaColec2, linea17)
-    val recorridoEnSubteB = new Recorrido(paradaSubteB1, paradaSubteB5, lineaB)
-    val recorridoEnSubteD = new Recorrido(paradaSubteD1, paradaSubteD3, lineaD)
-    val recorridoEnTren = new Recorrido(paradaTren4, paradaTren5, sarmiento)
+    recorridoEnColectivo = new Recorrido(paradaColec1, paradaColec2, linea17)
+    recorridoEnSubteB = new Recorrido(paradaSubteB1, paradaSubteB5, lineaB)
+    recorridoEnSubteD = new Recorrido(paradaSubteD1, paradaSubteD3, lineaD)
+    recorridoEnTren = new Recorrido(paradaTren4, paradaTren5, sarmiento)
 
-    val viajeEnColectivo = new ViajeSimple(recorridoEnColectivo)
-    val viajeEnSubte = new ViajeCompuesto(recorridoEnSubteB, recorridoEnSubteD)
-    val viajeCombinadoTrenYSubte = new ViajeCompuesto(recorridoEnSubteB, recorridoEnTren)
-    val viajeCombinadoColectivoYTren = new ViajeCompuesto(recorridoEnColectivo, recorridoEnTren)
+    viajeEnColectivo = new ViajeSimple(recorridoEnColectivo)
+    viajeEnSubte = new ViajeCompuesto(recorridoEnSubteB, recorridoEnSubteD)
+    viajeCombinadoTrenYSubte = new ViajeCompuesto(recorridoEnSubteB, recorridoEnTren)
+    viajeCombinadoColectivoYTren = new ViajeCompuesto(recorridoEnColectivo, recorridoEnTren)
 
     var listaDeViajes = MutableList(viajeEnColectivo, viajeEnSubte, viajeCombinadoColectivoYTren, viajeCombinadoTrenYSubte)
-    val planificador = new PlanificadorViaje(informador, listaDeViajes)
+    planificador = new PlanificadorViaje(informador, listaDeViajes)
 
-    val menorCosto = new MenorCosto()
-    val menorTiempo = new MenorTiempo()
+    menorCosto = new MenorCosto()
+    menorTiempo = new MenorTiempo()
   }
 
   @Test
   def elPlanificadorMeDevuelveElViajeDeMenorCosto {
 
-    val seteo = setUp
-
-    var viajeMasBarato = seteo.planificador.viajeMasConveniente(seteo.menorCosto)
-    assertTrue(viajeMasBarato == seteo.viajeEnColectivo)
+    var viajeMasBarato = planificador.viajeMasConveniente(menorCosto)
+    assertTrue(viajeMasBarato == viajeEnColectivo)
 
   }
 
   @Test
   def elPlanificadorMeDevuelveElViajeDeMenorTiempo {
 
-    val seteo = setUp
-
-    var viajeMasRapido = seteo.planificador.viajeMasConveniente(seteo.menorCosto)
-    assertTrue(viajeMasRapido == seteo.viajeEnColectivo)
+    var viajeMasRapido = planificador.viajeMasConveniente(menorCosto)
+    assertTrue(viajeMasRapido == viajeEnColectivo)
 
   }
 }
