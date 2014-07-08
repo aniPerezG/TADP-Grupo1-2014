@@ -22,6 +22,8 @@ import scala.collection.mutable.ArrayBuffer
 import comoViajo.ViajeSimple
 import comoViajo.ViajeSimple
 import comoViajo.Estadistic
+import comoViajo.ViajeSimple
+import comoViajo.ViajeSimple
 
 class TestsEstadisticas {
 
@@ -147,6 +149,7 @@ class TestsEstadisticas {
     var query = ejemplo
     .select(viaje => viaje.costoDelViaje)
     .where(viaje => viaje.costoDelViaje > 1)
+    .groupBy({viaje: ViajeSimple => viaje.recorrido.transporte})
    
     println(query.apply.toString) //Solo para verlo!!
 

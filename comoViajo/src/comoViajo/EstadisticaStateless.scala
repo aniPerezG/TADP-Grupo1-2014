@@ -16,6 +16,8 @@ trait Sentence[A] {
   
   def apply(l: List[A]): List[_]
   
+  def groupBy(t: A => _): GroupBy[A]
+  
 } 
 
 class Select[A](s: A=> _, e: Estadistic[A]) extends Sentence[A] {
@@ -28,16 +30,27 @@ class Select[A](s: A=> _, e: Estadistic[A]) extends Sentence[A] {
   
   def where(c: A => Boolean) = new Where[A](c, this)
   
+  def groupBy(t: A => _) = new GroupBy[A](t, this)
+  
 }
 
 class Where[A] (c: A => Boolean, s: Select[A]) extends Sentence[A] {
   
   def apply: List[_] = s.apply(values)
   
-  def apply(l: List[A]): List[A] = l.filter(c)
+  def apply(l: List[A]): List[_] = s.apply(l.filter(c))
   
-  def values: List[A] = apply(s.values)
+  def values: List[A] = s.values.filter(c)
    
+  def groupBy(t: A => _) = new GroupBy[A](t, this)
+}
+
+class GroupBy[A](t: A =>_, s: Sentence[A]) {
+  
+  def values = s.values.groupBy(t)
+
+  def apply = values.map{case (k,v) => (k, s.apply(v))}
+  
 }
 
 
