@@ -17,9 +17,11 @@ import comoViajo.ViajeSimple
 import comoViajo.TarjetaTurista
 import comoViajo.ViajeCompuesto
 import comoViajo.ViajesSimples
-import comoViajo.Estadistica
 import org.junit.Before
 import scala.collection.mutable.ArrayBuffer
+import comoViajo.ViajeSimple
+import comoViajo.ViajeSimple
+import comoViajo.Estadistic
 
 class TestsEstadisticas {
 
@@ -141,18 +143,14 @@ class TestsEstadisticas {
     ViajesSimples.add(viajeEnSubte)
     ViajesSimples.add(viajeEnTren)
 
-    var ejemplo = new Estadistica[ViajeSimple]
-    ejemplo
-      .select(viaje => viaje.costoDelViaje)
-      .from(ViajesSimples.allInstances)
-      .where(viaje => viaje.costoDelViaje > 3)
-      .groupBy(viaje => viaje.recorrido.transporte)
+    var ejemplo = new Estadistic[ViajeSimple](ViajesSimples.allInstances)
+    var query = ejemplo
+    .select(viaje => viaje.costoDelViaje)
+    .where(viaje => viaje.costoDelViaje > 1)
+   
+    println(query.apply.toString) //Solo para verlo!!
 
-    println(ejemplo.execute.toString()) //Solo para verlo!!
-    //Me muestra un mapa, donde cada key es el transporte y los values son los costos de los viajes
-    //Solo Subte tiene valor porque es el unico que cumple la condicion del where
-
-    assertEquals(3, ejemplo.execute.size)
+    assertEquals(3, query.apply.size)
 
   }
 
