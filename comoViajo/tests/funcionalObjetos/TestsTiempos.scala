@@ -16,33 +16,72 @@ import comoViajo.TarjetaTrabajador
 import comoViajo.ViajeSimple
 import comoViajo.TarjetaTurista
 import comoViajo.ViajeCompuesto
+import org.junit.Before
 
 class TestsTiempos {
+  
+  var paradaColec1: Direccion = _
+  var paradaColec2: Direccion = _
+  var paradaColec3: Direccion = _
 
-  def setUp = new {
-    val paradaColec1 = new Direccion("Onsari", 600)
-    val paradaColec2 = new Direccion("Onsari", 2500)
-    val paradaColec3 = new Direccion("Onsari", 3500)
+  var paradaSubteB1: Direccion = _
+  var paradaSubteB2: Direccion = _
+  var paradaSubteB3: Direccion = _
+  var paradaSubteB4: Direccion = _
+  var paradaSubteB5: Direccion = _
 
-    val paradaSubteB1 = new Direccion("Corrientes", 5000)
-    val paradaSubteB2 = new Direccion("Corrientes", 4500)
-    val paradaSubteB3 = new Direccion("Corrientes", 4000)
-    val paradaSubteB4 = new Direccion("Corrientes", 3500)
-    val paradaSubteB5 = new Direccion("Corrientes", 3000)
+  var paradaSubteD1: Direccion = _
+  var paradaSubteD2: Direccion = _
+  var paradaSubteD3: Direccion = _
+  var paradaSubteD4: Direccion = _
+  var paradaSubteD5: Direccion = _
 
-    val paradaSubteD1 = new Direccion("Corrientes", 5000)
-    val paradaSubteD2 = new Direccion("Santa Fe", 4200)
-    val paradaSubteD3 = new Direccion("Santa Fe", 3400)
-    val paradaSubteD4 = new Direccion("Santa Fe", 2600)
-    val paradaSubteD5 = new Direccion("Santa Fe", 1800)
+  var paradaTren1: Direccion = _
+  var paradaTren2: Direccion = _
+  var paradaTren3: Direccion = _
+  var paradaTren4: Direccion = _
+  var paradaTren5: Direccion = _
+  var paradaTren6: Direccion = _
+  var paradaTren7: Direccion = _
 
-    val paradaTren1 = new Direccion("La via", 0)
-    val paradaTren2 = new Direccion("La via", 1000)
-    val paradaTren3 = new Direccion("La via", 3000)
-    val paradaTren4 = new Direccion("La via", 5000)
-    val paradaTren5 = new Direccion("La via", 7000)
-    val paradaTren6 = new Direccion("La via", 9000)
-    val paradaTren7 = new Direccion("La via", 11000)
+  var paradasDeColec: Array[Direccion] = _
+  var paradasDeSubteB: Array[Direccion] = _
+  var paradasDeSubteD: Array[Direccion] = _
+  var paradasDeTren: Array[Direccion] = _
+
+  var tablaDePreciosDelTren: Map[Int, Double] = _
+
+  var informador: StubInformacionTransportes = _
+  var linea17: COLECTIVO = _
+  var lineaB: SUBTE = _
+  var lineaD: SUBTE = _
+  var sarmiento: TREN = _
+
+  @Before
+  def setUp =  {
+    paradaColec1 = new Direccion("Onsari", 600)
+    paradaColec2 = new Direccion("Onsari", 2500)
+    paradaColec3 = new Direccion("Onsari", 3500)
+
+    paradaSubteB1 = new Direccion("Corrientes", 5000)
+    paradaSubteB2 = new Direccion("Corrientes", 4500)
+    paradaSubteB3 = new Direccion("Corrientes", 4000)
+    paradaSubteB4 = new Direccion("Corrientes", 3500)
+    paradaSubteB5 = new Direccion("Corrientes", 3000)
+
+    paradaSubteD1 = new Direccion("Corrientes", 5000)
+    paradaSubteD2 = new Direccion("Santa Fe", 4200)
+    paradaSubteD3 = new Direccion("Santa Fe", 3400)
+    paradaSubteD4 = new Direccion("Santa Fe", 2600)
+    paradaSubteD5 = new Direccion("Santa Fe", 1800)
+
+    paradaTren1 = new Direccion("La via", 0)
+    paradaTren2 = new Direccion("La via", 1000)
+    paradaTren3 = new Direccion("La via", 3000)
+    paradaTren4 = new Direccion("La via", 5000)
+    paradaTren5 = new Direccion("La via", 7000)
+    paradaTren6 = new Direccion("La via", 9000)
+    paradaTren7 = new Direccion("La via", 11000)
 
     var paradasDeColec: Array[Direccion] = new Array[Direccion](3)
     var paradasDeSubteB: Array[Direccion] = new Array[Direccion](5)
@@ -75,7 +114,7 @@ class TestsTiempos {
 
     var tablaDePreciosDelTren = Map(3 -> 2.0, 5 -> 4.5, 7 -> 8.75)
 
-    val informador = new StubInformacionTransportes()
+    informador = new StubInformacionTransportes()
     var linea17 = COLECTIVO(paradasDeColec, informador)
     var lineaB = SUBTE(paradasDeSubteB, informador)
     var lineaD = SUBTE(paradasDeSubteD, informador)
@@ -85,9 +124,8 @@ class TestsTiempos {
 
   @Test
   def elTiempoDeUnViajeEnMicroSimpleLoDeterminaSuRecorrido {
-    val seteo = setUp
 
-    val recorridoEnColectivo = new Recorrido(seteo.paradaColec1, seteo.paradaColec2, seteo.linea17)
+    val recorridoEnColectivo = new Recorrido(paradaColec1, paradaColec2, linea17)
     val viajeEnColectivo = new ViajeSimple(recorridoEnColectivo)
 
     assertEquals(8, viajeEnColectivo.tiempoDelViaje, 0.1)
@@ -95,9 +133,8 @@ class TestsTiempos {
 
   @Test
   def elTiempoDeUnViajeSimpleEnSubteLoDeterminaSuRecorrido {
-    val seteo = setUp
 
-    val recorridoEnSubte = new Recorrido(seteo.paradaSubteB1, seteo.paradaSubteB5, seteo.lineaB)
+    val recorridoEnSubte = new Recorrido(paradaSubteB1, paradaSubteB5, lineaB)
     val viajeEnSubte = new ViajeSimple(recorridoEnSubte)
 
     assertEquals(8 , viajeEnSubte.tiempoDelViaje, 0.1)
@@ -105,20 +142,18 @@ class TestsTiempos {
 
   @Test
   def elTiempoDeUnViajeSimpleEnTrenLoDeterminaSuRecorrido {
-    val seteo = setUp
 
-    val recorridoEnTren = new Recorrido(seteo.paradaTren4, seteo.paradaTren5, seteo.sarmiento)
+    val recorridoEnTren = new Recorrido(paradaTren4, paradaTren5, sarmiento)
     val viajeEnTren = new ViajeSimple(recorridoEnTren)
 
     assertEquals(3 , viajeEnTren.tiempoDelViaje, 0.1)
   }
 
     @Test
-    def elTiempoDeUnViajeCombinandoUnTrenYUnBondiEsLaSumaDeSusRecorridosMásLoQueTardaLaCombinacion {
-      val seteo = setUp
+    def elTiempoDeUnViajeCombinandoUnTrenYUnBondiEsLaSumaDeSusRecorridosMasLoQueTardaLaCombinacion {
       
-      val recorridoEnTren = new Recorrido(seteo.paradaTren4,seteo.paradaTren5,seteo.sarmiento)
-			val recorridoEnColectivo = new Recorrido (seteo.paradaColec1,seteo.paradaColec2,seteo.linea17)
+      val recorridoEnTren = new Recorrido(paradaTren4,paradaTren5,sarmiento)
+			val recorridoEnColectivo = new Recorrido (paradaColec1,paradaColec2,linea17)
       
       val viajeCompuesto = new ViajeCompuesto(recorridoEnColectivo,recorridoEnTren)
       
@@ -127,11 +162,10 @@ class TestsTiempos {
     }
     
     @Test
-    def elTiempoDeUnViajeCombinandoUnTrenYUnSubteEsLaSumaDeSusRecorridosMásLoQueTardaLaCombinacion {
-      val seteo = setUp
+    def elTiempoDeUnViajeCombinandoUnTrenYUnSubteEsLaSumaDeSusRecorridosMasLoQueTardaLaCombinacion {
       
-      val recorridoEnTren = new Recorrido(seteo.paradaTren4,seteo.paradaTren5,seteo.sarmiento)
-      val recorridoEnSubte = new Recorrido(seteo.paradaSubteB1,seteo.paradaSubteB5,seteo.lineaB)
+      val recorridoEnTren = new Recorrido(paradaTren4,paradaTren5,sarmiento)
+      val recorridoEnSubte = new Recorrido(paradaSubteB1,paradaSubteB5,lineaB)
       
       val viajeCompuesto = new ViajeCompuesto(recorridoEnSubte,recorridoEnTren)
       
@@ -140,11 +174,10 @@ class TestsTiempos {
     }
     
     @Test
-    def elTiempoDeUnViajeCombinandoDosSubtesEsLaSumaDeSusRecorridosMásLoQueTardaLaCombinacion {
-      val seteo = setUp
+    def elTiempoDeUnViajeCombinandoDosSubtesEsLaSumaDeSusRecorridosMasLoQueTardaLaCombinacion {
       
-      val recorridoEnSubteB = new Recorrido(seteo.paradaSubteB1,seteo.paradaSubteB5,seteo.lineaB)
-      val recorridoEnSubteD = new Recorrido(seteo.paradaSubteD1,seteo.paradaSubteD3,seteo.lineaD)
+      val recorridoEnSubteB = new Recorrido(paradaSubteB1,paradaSubteB5,lineaB)
+      val recorridoEnSubteD = new Recorrido(paradaSubteD1,paradaSubteD3,lineaD)
       val viajeEnSubte = new ViajeCompuesto(recorridoEnSubteB,recorridoEnSubteD)
       
       assertEquals(16 , viajeEnSubte.tiempoDelViaje, 0.1)
