@@ -38,9 +38,11 @@ class Where[A] (c: A => Boolean, s: Select[A]) extends Sentence[A] {
   
   def apply: List[_] = s.apply(values)
   
-  def apply(l: List[A]): List[_] = s.apply(l.filter(c))
+  def apply(l: List[A]): List[_] = s.apply(applyConditions(l))
   
-  def values: List[A] = s.values.filter(c)
+  def applyConditions(l: List[A]) = l.filter(c)
+  
+  def values: List[A] = applyConditions(s.values)
    
   def groupBy(t: A => _) = new GroupBy[A](t, this)
 }
