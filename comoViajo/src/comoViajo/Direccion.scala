@@ -1,5 +1,5 @@
 package comoViajo
 
-class Direccion (var calle : String, var altura : Int){
+class Direccion (var calle : String, var altura : Int, var zona: Zona){
 
 }

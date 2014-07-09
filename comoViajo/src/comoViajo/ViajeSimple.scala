@@ -7,5 +7,7 @@ class ViajeSimple(var recorrido: Recorrido) extends Viaje {
   def costoDelViaje(): Double = recorrido.costoBase
 
   def tiempoDelViaje: Double = recorrido.tiempoBase
+  
+  def zonasPorLaQuePasa: List[Zona] = recorrido.zonasDelRecorrido
 
 }

@@ -20,4 +20,11 @@ class Recorrido(var paradaDeSubida: Direccion, var paradaDeBajada: Direccion, va
       distancia / 15000.00 * 60.00
   }
 
+  def zonasDelRecorrido : List[Zona]= 
+    List(paradaDeSubida.zona, paradaDeBajada.zona)
+    
+  def seDesarrollaEnUnaZona : Boolean =
+    paradaDeBajada.zona.equals(paradaDeSubida.zona)
+    
+
 }

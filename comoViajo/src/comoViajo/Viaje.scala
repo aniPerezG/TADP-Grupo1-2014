@@ -7,5 +7,7 @@ abstract class Viaje() {
   def costoDelViaje(): Double
 
   def tiempoDelViaje: Double
+  
+  def zonasPorLaQuePasa: List[Zona]
 
 }
