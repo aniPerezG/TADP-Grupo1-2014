@@ -1,6 +1,6 @@
 package comoViajo
 
-class Estadistic[A](list: List[A]) {
+class Statistics[A](list: List[A]) {
 
   val from = list
 
@@ -18,9 +18,11 @@ trait Sentence[A] {
   
   def groupBy(t: A => _): GroupBy[A]
   
+  def reduce[B, _](f: List[_] => B): B = f(apply)
+    
 } 
 
-class Select[A](s: A=> _, e: Estadistic[A]) extends Sentence[A] {
+class Select[A](s: A=> _, e: Statistics[A]) extends Sentence[A] {
   
   def apply: List[_] = apply(values)
   
@@ -31,7 +33,7 @@ class Select[A](s: A=> _, e: Estadistic[A]) extends Sentence[A] {
   def where(c: A => Boolean) = new Where[A](c, this)
   
   def groupBy(t: A => _) = new GroupBy[A](t, this)
-  
+    
 }
 
 class Where[A] (c: A => Boolean, s: Select[A]) extends Sentence[A] {
@@ -52,6 +54,8 @@ class GroupBy[A](t: A =>_, s: Sentence[A]) {
   def values = s.values.groupBy(t)
 
   def apply = values.map{case (k,v) => (k, s.apply(v))}
+
+  def reduce[B](f: List[_] => B) = apply.map{case (k, v) => (k,f(v))}
   
 }
 

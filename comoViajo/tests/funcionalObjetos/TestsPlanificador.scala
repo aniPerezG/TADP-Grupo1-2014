@@ -24,6 +24,7 @@ import org.junit.Before
 import comoViajo.MenorCosto
 import comoViajo.MenorTiempo
 import comoViajo.PlanificadorViaje
+import comoViajo.PALERMO
 
 class TestsPlanificador {
 
@@ -81,29 +82,29 @@ class TestsPlanificador {
 
   @Before
   def setUp =  {
-    paradaColec1 = new Direccion("Onsari", 600)
-    paradaColec2 = new Direccion("Onsari", 2500)
-    paradaColec3 = new Direccion("Onsari", 3500)
+    paradaColec1 = new Direccion("Onsari", 600, PALERMO)
+    paradaColec2 = new Direccion("Onsari", 2500, PALERMO)
+    paradaColec3 = new Direccion("Onsari", 3500, PALERMO)
 
-    paradaSubteB1 = new Direccion("Corrientes", 5000)
-    paradaSubteB2 = new Direccion("Corrientes", 4500)
-    paradaSubteB3 = new Direccion("Corrientes", 4000)
-    paradaSubteB4 = new Direccion("Corrientes", 3500)
-    paradaSubteB5 = new Direccion("Corrientes", 3000)
+    paradaSubteB1 = new Direccion("Corrientes", 5000, PALERMO)
+    paradaSubteB2 = new Direccion("Corrientes", 4500, PALERMO)
+    paradaSubteB3 = new Direccion("Corrientes", 4000, PALERMO)
+    paradaSubteB4 = new Direccion("Corrientes", 3500, PALERMO)
+    paradaSubteB5 = new Direccion("Corrientes", 3000, PALERMO)
 
-    paradaSubteD1 = new Direccion("Corrientes", 5000)
-    paradaSubteD2 = new Direccion("Santa Fe", 4200)
-    paradaSubteD3 = new Direccion("Santa Fe", 3400)
-    paradaSubteD4 = new Direccion("Santa Fe", 2600)
-    paradaSubteD5 = new Direccion("Santa Fe", 1800)
+    paradaSubteD1 = new Direccion("Corrientes", 5000, PALERMO)
+    paradaSubteD2 = new Direccion("Santa Fe", 4200, PALERMO)
+    paradaSubteD3 = new Direccion("Santa Fe", 3400, PALERMO)
+    paradaSubteD4 = new Direccion("Santa Fe", 2600, PALERMO)
+    paradaSubteD5 = new Direccion("Santa Fe", 1800, PALERMO)
 
-    paradaTren1 = new Direccion("La via", 0)
-    paradaTren2 = new Direccion("La via", 1000)
-    paradaTren3 = new Direccion("La via", 3000)
-    paradaTren4 = new Direccion("La via", 5000)
-    paradaTren5 = new Direccion("La via", 7000)
-    paradaTren6 = new Direccion("La via", 9000)
-    paradaTren7 = new Direccion("La via", 11000)
+    paradaTren1 = new Direccion("La via", 0, PALERMO)
+    paradaTren2 = new Direccion("La via", 1000, PALERMO)
+    paradaTren3 = new Direccion("La via", 3000, PALERMO)
+    paradaTren4 = new Direccion("La via", 5000, PALERMO)
+    paradaTren5 = new Direccion("La via", 7000, PALERMO)
+    paradaTren6 = new Direccion("La via", 9000, PALERMO)
+    paradaTren7 = new Direccion("La via", 11000, PALERMO)
 
     paradasDeColec = new Array[Direccion](3)
     paradasDeSubteB = new Array[Direccion](5)
