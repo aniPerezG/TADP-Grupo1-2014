@@ -59,7 +59,7 @@ class TestsTiempos {
   var lineaD: SUBTE = _
   var sarmiento: TREN = _
 
-  @Before
+  @Before 
   def setUp: Unit =  {
     paradaColec1 = new Direccion("Onsari", 600, LABOCA)
     paradaColec2 = new Direccion("Onsari", 2500, LABOCA)
@@ -85,10 +85,10 @@ class TestsTiempos {
     paradaTren6 = new Direccion("La via", 9000, PALERMO)
     paradaTren7 = new Direccion("La via", 11000, PALERMO)
 
-    var paradasDeColec: Array[Direccion] = new Array[Direccion](3)
-    var paradasDeSubteB: Array[Direccion] = new Array[Direccion](5)
-    var paradasDeSubteD: Array[Direccion] = new Array[Direccion](5)
-    var paradasDeTren: Array[Direccion] = new Array[Direccion](7)
+    paradasDeColec = new Array[Direccion](3)
+    paradasDeSubteB = new Array[Direccion](5)
+    paradasDeSubteD = new Array[Direccion](5)
+    paradasDeTren = new Array[Direccion](7)
 
     paradasDeColec :+= paradaColec1
     paradasDeColec :+= paradaColec2
@@ -114,13 +114,13 @@ class TestsTiempos {
     paradasDeTren :+= paradaTren6
     paradasDeTren :+= paradaTren7
 
-    var tablaDePreciosDelTren = Map(3 -> 2.0, 5 -> 4.5, 7 -> 8.75)
+    tablaDePreciosDelTren = Map(3 -> 2.0, 5 -> 4.5, 7 -> 8.75)
 
     informador = new StubInformacionTransportes()
-    var linea17 = COLECTIVO(paradasDeColec, informador)
-    var lineaB = SUBTE(paradasDeSubteB, informador)
-    var lineaD = SUBTE(paradasDeSubteD, informador)
-    var sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren)
+    linea17 = COLECTIVO(paradasDeColec, informador)
+    lineaB = SUBTE(paradasDeSubteB, informador)
+    lineaD = SUBTE(paradasDeSubteD, informador)
+    sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren)
 
   }
 
