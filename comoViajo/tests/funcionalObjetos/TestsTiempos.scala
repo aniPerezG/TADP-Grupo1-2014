@@ -18,6 +18,7 @@ import comoViajo.TarjetaTurista
 import comoViajo.ViajeCompuesto
 import org.junit.Before
 import comoViajo.PALERMO
+import comoViajo.LABOCA
 
 class TestsTiempos {
   
@@ -59,10 +60,10 @@ class TestsTiempos {
   var sarmiento: TREN = _
 
   @Before
-  def setUp =  {
-    paradaColec1 = new Direccion("Onsari", 600, PALERMO)
-    paradaColec2 = new Direccion("Onsari", 2500, PALERMO)
-    paradaColec3 = new Direccion("Onsari", 3500, PALERMO)
+  def setUp: Unit =  {
+    paradaColec1 = new Direccion("Onsari", 600, LABOCA)
+    paradaColec2 = new Direccion("Onsari", 2500, LABOCA)
+    paradaColec3 = new Direccion("Onsari", 3500, LABOCA)
 
     paradaSubteB1 = new Direccion("Corrientes", 5000, PALERMO)
     paradaSubteB2 = new Direccion("Corrientes", 4500, PALERMO)
@@ -70,7 +71,7 @@ class TestsTiempos {
     paradaSubteB4 = new Direccion("Corrientes", 3500, PALERMO)
     paradaSubteB5 = new Direccion("Corrientes", 3000, PALERMO)
 
-    paradaSubteD1 = new Direccion("Corrientes", 5000, PALERMO)
+    paradaSubteD1 = new Direccion("Corrientes", 5000, PALERMO) 
     paradaSubteD2 = new Direccion("Santa Fe", 4200, PALERMO)
     paradaSubteD3 = new Direccion("Santa Fe", 3400, PALERMO)
     paradaSubteD4 = new Direccion("Santa Fe", 2600, PALERMO)
@@ -139,6 +140,7 @@ class TestsTiempos {
     val viajeEnSubte = new ViajeSimple(recorridoEnSubte)
 
     assertEquals(8 , viajeEnSubte.tiempoDelViaje, 0.1)
+   
   }
 
   @Test
@@ -170,7 +172,7 @@ class TestsTiempos {
       
       val viajeCompuesto = new ViajeCompuesto(recorridoEnSubte,recorridoEnTren)
       
-      assertEquals(16 , viajeCompuesto.tiempoDelViaje, 0.1)
+      assertEquals(16.0 , viajeCompuesto.tiempoDelViaje, 0.1)
 
     }
     

@@ -1,9 +1,8 @@
 package comoViajo
 
 abstract class CaseTransporte {
-
-  val paradas: Array[Direccion] //Usamos un array porque tiene que estar ordenado
-  val informador: InformacionTransportes
+  val paradas : Array[Direccion]
+  val informador : InformacionTransportes
 
   def paradasDe(unRecorrido: Recorrido): Int = {
     val indiceOrigen = paradas.indexOf(unRecorrido.paradaDeSubida)
@@ -21,7 +20,9 @@ abstract class CaseTransporte {
 
   def interseccionCon(otroTransporte: CaseTransporte): Direccion = this.paradas.intersect(otroTransporte.paradas).head
 
-  def transportesVecinosEntre(): Array[CaseTransporte] = paradas.flatMap { unaParada => informador.transportesCerca(unaParada) }
+  def transportesVecinosEntre(): Array[CaseTransporte] = paradas.flatMap{unaParada => informador.transportesCerca(unaParada) }
+
+
 }
 
 case class SUBTE(paradas: Array[Direccion], informador: InformacionTransportes) extends CaseTransporte

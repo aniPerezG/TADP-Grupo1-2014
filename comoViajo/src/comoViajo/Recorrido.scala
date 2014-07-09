@@ -15,7 +15,7 @@ class Recorrido(var paradaDeSubida: Direccion, var paradaDeBajada: Direccion, va
   def tiempoBase: Double = transporte match {
     case SUBTE(paradas, informador) => SUBTE(paradas, informador).paradasDe(this) * 2
     case TREN(paradas, informador, tabla) => TREN(paradas, informador, tabla).paradasDe(this) * 3
-    case COLECTIVO(_, informador) =>
+    case COLECTIVO(_, informador) => 
       var distancia = informador.distanciaColectivo(paradaDeSubida, paradaDeBajada)
       distancia / 15000.00 * 60.00
   }

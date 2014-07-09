@@ -18,6 +18,8 @@ import comoViajo.TarjetaTurista
 import comoViajo.ViajeCompuesto
 import org.junit.Before
 import comoViajo.PALERMO
+import comoViajo.LABOCA
+import comoViajo.CENTRO
 
 class TestsCostos {
 
@@ -59,10 +61,10 @@ class TestsCostos {
   var sarmiento: TREN = _
   
   @Before
-  def setUp = {
-    paradaColec1 = new Direccion("Onsari", 600, PALERMO)
-    paradaColec2 = new Direccion("Onsari", 2500, PALERMO)
-    paradaColec3 = new Direccion("Onsari", 3500, PALERMO)
+  def setUp : Unit = {
+    paradaColec1 = new Direccion("Onsari", 600, LABOCA)
+    paradaColec2 = new Direccion("Onsari", 2500, LABOCA)
+    paradaColec3 = new Direccion("Onsari", 3500, LABOCA)
 
     paradaSubteB1 = new Direccion("Corrientes", 5000, PALERMO)
     paradaSubteB2 = new Direccion("Corrientes", 4500, PALERMO)
@@ -152,9 +154,9 @@ class TestsCostos {
 
     var tarjetaYendoAlTrabajo: TarjetaTrabajador = new TarjetaTrabajador
 
-    val direccionDeLaBoca = new Direccion("Brandsen", 200, PALERMO)
-    val direccionDelCentro = new Direccion("Riobamba", 700, PALERMO)
-
+    val direccionDeLaBoca = new Direccion("Brandsen", 200, LABOCA)
+    val direccionDelCentro = new Direccion("Riobamba", 700, CENTRO)
+ 
     val parada1Del24 = new Direccion("Av. Patricios", 150, PALERMO)
     val parada3Del24 = new Direccion("Lavalle", 1500, PALERMO)
 

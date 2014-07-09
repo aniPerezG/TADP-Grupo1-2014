@@ -12,7 +12,7 @@ class TarjetaTrabajador extends Tarjeta {
 //  }
   val condicion = {unRecorrido : Recorrido =>
     (unRecorrido.paradaDeSubida.zona match{
-      case PALERMO | LINIERS=> true
+      case LABOCA | LINIERS=> true
       case _ => false
     }) && 
     (unRecorrido.paradaDeBajada.zona match{
