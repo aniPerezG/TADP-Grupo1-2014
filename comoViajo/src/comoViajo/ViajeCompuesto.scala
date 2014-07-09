@@ -31,7 +31,7 @@ class ViajeCompuesto(var unRecorrido: Recorrido, var otroRecorrido: Recorrido) e
       COLECTIVO(paradas, informador).tiempoCombinacion(unRecorrido.paradaDeBajada, otroRecorrido.paradaDeSubida)
   } 
   
-  def zonasPorLaQuePasa: List[Zona] =
+  def zonasPorLaQuePasa: Set[Zona] = 
     unRecorrido.zonasDelRecorrido ++ otroRecorrido.zonasDelRecorrido
 
 }

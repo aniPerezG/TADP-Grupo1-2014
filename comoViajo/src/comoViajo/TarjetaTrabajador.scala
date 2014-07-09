@@ -19,7 +19,7 @@ class TarjetaTrabajador extends Tarjeta {
       case CENTRO => true
       case _ => false
     })
-   }
+   }//FIXME para mi esto es un mal uso de guardas
 
   def precioConDescuento(unRecorrido: Recorrido): Double = unRecorrido.costoBase - 1.50
 }

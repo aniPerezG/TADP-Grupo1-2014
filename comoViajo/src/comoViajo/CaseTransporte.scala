@@ -2,7 +2,6 @@ package comoViajo
 
 abstract class CaseTransporte {
 
-  //var informador = new InformadorPosta
   val paradas: Array[Direccion] //Usamos un array porque tiene que estar ordenado
   val informador: InformacionTransportes
 
@@ -10,6 +9,14 @@ abstract class CaseTransporte {
     val indiceOrigen = paradas.indexOf(unRecorrido.paradaDeSubida)
     val indiceLlegada = paradas.indexOf(unRecorrido.paradaDeBajada, indiceOrigen)
     indiceLlegada - indiceOrigen
+  }
+  
+  def zonasDe(unRecorrido: Recorrido): Set[Zona] = {
+    var paradasDeUnRecorrido : Array[Direccion] = Array[Direccion]()
+    val indiceOrigen = paradas.indexOf(unRecorrido.paradaDeSubida)
+    paradas.copyToArray(paradasDeUnRecorrido, indiceOrigen, this.paradasDe(unRecorrido))
+    val zonas = paradasDeUnRecorrido.map(_.zona).toSet
+    zonas
   }
 
   def interseccionCon(otroTransporte: CaseTransporte): Direccion = this.paradas.intersect(otroTransporte.paradas).head
