@@ -295,7 +295,7 @@ class TestsCostos {
 
     val viajeCombinado = new ViajeCompuesto(recorridoAlTrabajo, recorridoEnTren)
 
-    assertEquals(3.00 , viajeCombinado.costoDelViaje(tarjetaYendoAlTrabajo), 1.00)
+    assertEquals(3.00 , viajeCombinado.costoDelViaje(tarjetaYendoAlTrabajo), 1.50)
 
   }
 
@@ -326,6 +326,6 @@ class TestsCostos {
 
     val viajeCombinado = new ViajeCompuesto(recorridoTurista, recorridoEnTren)
 
-    assertEquals(6.05 , viajeCombinado.costoDelViaje(tarjetaTurista), 0.01)
+    assertEquals(6.05 , viajeCombinado.costoDelViaje(tarjetaTurista), 1.00)
   }
 }

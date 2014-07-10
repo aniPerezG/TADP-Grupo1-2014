@@ -25,6 +25,7 @@ import comoViajo.MenorCosto
 import comoViajo.MenorTiempo
 import comoViajo.PlanificadorViaje
 import comoViajo.PALERMO
+import comoViajo.Viaje
 
 class TestsPlanificador {
 
@@ -154,7 +155,7 @@ class TestsPlanificador {
     viajeCombinadoTrenYSubte = new ViajeCompuesto(recorridoEnSubteB, recorridoEnTren)
     viajeCombinadoColectivoYTren = new ViajeCompuesto(recorridoEnColectivo, recorridoEnTren)
 
-    var listaDeViajes = MutableList(viajeEnColectivo, viajeEnSubte, viajeCombinadoColectivoYTren, viajeCombinadoTrenYSubte)
+    var listaDeViajes : MutableList[Viaje] = MutableList(viajeEnColectivo, viajeEnSubte, viajeCombinadoColectivoYTren, viajeCombinadoTrenYSubte)
     planificador = new PlanificadorViaje(informador, listaDeViajes)
 
     menorCosto = new MenorCosto()
