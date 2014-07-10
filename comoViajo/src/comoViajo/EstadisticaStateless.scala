@@ -18,7 +18,7 @@ trait Sentence[A] {
   
   def groupBy(criterion: A => _): GroupBy[A]
   
-  def reduce[B, _](reduction: List[_] => B) = new Reduce[B](reduction, apply)
+  def reduce[B](reduction: List[_] => B) = new Reduce[B](reduction, apply)
     
 } 
 
@@ -62,7 +62,7 @@ class GroupBy[A](transformation: A =>_, sentence: Sentence[A]) {
 
 class ReduceMap[B](reduction: List[_] => B, results: Map[_,List[_]]) {
   
-  def apply =  results.map{case (key, values) => (key, new Reduce(reduction, values).apply)}
+  def apply =  results.mapValues(values =>  new Reduce(reduction, values).apply)
   
 }
 

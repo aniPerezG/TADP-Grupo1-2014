@@ -25,6 +25,7 @@ import comoViajo.ViajeSimple
 import comoViajo.ViajeSimple
 import comoViajo.Statistics
 import comoViajo.PALERMO
+import comoViajo.Statistics
 
 class TestsEstadisticas {
 
@@ -128,11 +129,6 @@ class TestsEstadisticas {
     lineaD = SUBTE(paradasDeSubteD, informador)
     sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren)
 
-  }
-
-  @Test
-  def TestEstadisticaViajesSimples {
-
     val recorridoEnColectivo = new Recorrido(paradaColec1, paradaColec2, linea17)
     val viajeEnColectivo = new ViajeSimple(recorridoEnColectivo)
 
@@ -141,22 +137,58 @@ class TestsEstadisticas {
 
     val recorridoEnTren = new Recorrido(paradaTren4, paradaTren5, sarmiento)
     val viajeEnTren = new ViajeSimple(recorridoEnTren)
-
+    
+    val recorridoEnSubte2 = new Recorrido(paradaSubteB1, paradaSubteB5, lineaB)
+    val viajeEnSubte2 = new ViajeSimple(recorridoEnSubte2)
+    
+      
     ViajesSimples.add(viajeEnColectivo)
     ViajesSimples.add(viajeEnSubte)
     ViajesSimples.add(viajeEnTren)
+    ViajesSimples.add(viajeEnSubte2)    
+    
+  }
+
+  @Test
+  def TestEstadisticaViajesSimples {
 
     var ejemplo = new Statistics[ViajeSimple](ViajesSimples.allInstances)
     var query = ejemplo
       .select { viaje => viaje.costoDelViaje }
       .where { viaje => viaje.costoDelViaje > 3 }
-      .groupBy { viaje: ViajeSimple => viaje.recorrido.transporte }
-      .reduce { viajes => viajes.size }
+      .groupBy { viaje: ViajeSimple => viaje.recorrido.transporte.getClass() }
 
     println(query.apply.toString) //Solo para verlo!!
 
     assertEquals(1, query.apply.size)
 
   }
+  
+@Test
+def TestProporcionDeViajesParaUnaZonaDada {
+    
+    var queryTotal = new Statistics[ViajeSimple](ViajesSimples.allInstances)
+    var total = queryTotal.select(identity)
+    .reduce(_.size)
+    .apply
 
+    var query = new Statistics[ViajeSimple](ViajesSimples.allInstances)
+    
+    var resultado = query.select(identity)
+    .where{_.zonasPorLaQuePasa.contains(PALERMO)}
+    .groupBy{viaje : ViajeSimple => viaje.transporte.getClass()}
+    .reduce{viajes => (viajes.size * 100.0) / total}
+    .apply
+    
+    println(resultado.toString)
+    
+    var listaDePorcentajesOrdenados = resultado.valuesIterator.toList.sortBy(identity)
+    
+    assertEquals(listaDePorcentajesOrdenados(0), 25.0, 0.1)
+    assertEquals(listaDePorcentajesOrdenados(1), 25.0, 0.1)
+    assertEquals(listaDePorcentajesOrdenados(2), 50.0, 0.1)
+    
+   
+}
+  
 }
