@@ -154,9 +154,9 @@ class TestsEstadisticas {
     .reduce({viajes => viajes.size})
   
    
-    println(query.toString) //Solo para verlo!!
+    println(query.apply.toString) //Solo para verlo!!
 
-    assertEquals(1, query.size)
+    assertEquals(1, query.apply.size)
 
   }
 
