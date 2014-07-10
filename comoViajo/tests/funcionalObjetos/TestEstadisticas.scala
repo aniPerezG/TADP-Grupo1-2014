@@ -148,12 +148,11 @@ class TestsEstadisticas {
 
     var ejemplo = new Statistics[ViajeSimple](ViajesSimples.allInstances)
     var query = ejemplo
-    .select(viaje => viaje.costoDelViaje)
-    .where(viaje => viaje.costoDelViaje > 3)
-    .groupBy({viaje: ViajeSimple => viaje.recorrido.transporte})
-    .reduce({viajes => viajes.size})
-  
-   
+      .select { viaje => viaje.costoDelViaje }
+      .where { viaje => viaje.costoDelViaje > 3 }
+      .groupBy { viaje: ViajeSimple => viaje.recorrido.transporte }
+      .reduce { viajes => viajes.size }
+
     println(query.apply.toString) //Solo para verlo!!
 
     assertEquals(1, query.apply.size)
