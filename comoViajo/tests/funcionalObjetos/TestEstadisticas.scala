@@ -26,6 +26,10 @@ import comoViajo.ViajeSimple
 import comoViajo.Statistics
 import comoViajo.PALERMO
 import comoViajo.Statistics
+import comoViajo.Compania
+import comoViajo.GRUPOPLAZA
+import comoViajo.METROVIAS
+import comoViajo.TBA
 
 class TestsEstadisticas {
 
@@ -68,6 +72,7 @@ class TestsEstadisticas {
 
   @Before
   def setUp = {
+    
     paradaColec1 = new Direccion("Onsari", 600, PALERMO)
     paradaColec2 = new Direccion("Onsari", 2500, PALERMO)
     paradaColec3 = new Direccion("Onsari", 3500, PALERMO)
@@ -124,10 +129,10 @@ class TestsEstadisticas {
     tablaDePreciosDelTren = Map(3 -> 2.0, 5 -> 4.5, 7 -> 8.75)
 
     informador = new StubInformacionTransportes()
-    linea17 = COLECTIVO(paradasDeColec, informador)
-    lineaB = SUBTE(paradasDeSubteB, informador)
-    lineaD = SUBTE(paradasDeSubteD, informador)
-    sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren)
+    linea17 = COLECTIVO(paradasDeColec, informador,GRUPOPLAZA)
+    lineaB = SUBTE(paradasDeSubteB, informador, METROVIAS)
+    lineaD = SUBTE(paradasDeSubteD, informador,METROVIAS)
+    sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren,TBA)
 
     val recorridoEnColectivo = new Recorrido(paradaColec1, paradaColec2, linea17)
     val viajeEnColectivo = new ViajeSimple(recorridoEnColectivo)
@@ -139,19 +144,20 @@ class TestsEstadisticas {
     val viajeEnTren = new ViajeSimple(recorridoEnTren)
     
     val recorridoEnSubte2 = new Recorrido(paradaSubteB1, paradaSubteB5, lineaB)
-    val viajeEnSubte2 = new ViajeSimple(recorridoEnSubte2)
+    val viajeEnSubte2 = new ViajeSimple(recorridoEnSubte2) 
     
-      
+    ViajesSimples.clean
     ViajesSimples.add(viajeEnColectivo)
     ViajesSimples.add(viajeEnSubte)
-    ViajesSimples.add(viajeEnTren)
-    ViajesSimples.add(viajeEnSubte2)    
+    ViajesSimples.add(viajeEnSubte2)
+    ViajesSimples.add(viajeEnColectivo)
     
   }
 
   @Test
   def TestEstadisticaViajesSimples {
-
+    
+  
     var ejemplo = new Statistics[ViajeSimple](ViajesSimples.allInstances)
     var query = ejemplo
       .select { viaje => viaje.costoDelViaje }
@@ -161,6 +167,7 @@ class TestsEstadisticas {
     println(query.apply.toString) //Solo para verlo!!
 
     assertEquals(1, query.apply.size)
+    
 
   }
   
@@ -188,7 +195,70 @@ def TestProporcionDeViajesParaUnaZonaDada {
     assertEquals(listaDePorcentajesOrdenados(1), 25.0, 0.1)
     assertEquals(listaDePorcentajesOrdenados(2), 50.0, 0.1)
     
-   
 }
+
+@Test
+def TestDeFacturacionTotalSobreCadaCompania {
+      
+   var query = new Statistics[ViajeSimple](ViajesSimples.allInstances)
+   var resultado = query
+   .select(identity)
+   .groupBy{viaje : ViajeSimple => viaje.transporte.compania}
+   .reduce{v => costoTotal(v)}
+   .apply
+  
+    println(resultado.toString)
+    println(ViajesSimples.allInstances.toString())
+    
+    var listaDePreciosOrdenados = resultado.valuesIterator.toList.sortBy(identity)
+    
+    assertEquals(listaDePreciosOrdenados(0), 2.0, 0.1)
+    assertEquals(listaDePreciosOrdenados(1), 2.5, 0.1)
+    assertEquals(listaDePreciosOrdenados(2), 9.0, 0.1)
+      
+}
+
+@Test
+def TestDeFacturacionTotalSobreCadaTipoDeTransporte {
+  
+  var query = new Statistics[ViajeSimple](ViajesSimples.allInstances)
+  var resultado = query
+   .select(identity)
+   .groupBy{viaje : ViajeSimple => viaje.transporte.getClass()}
+   .reduce{v => costoTotal(v)}
+   .apply
+    
+    println(resultado.toString)
+    
+    var listaDePreciosOrdenados = resultado.valuesIterator.toList.sortBy(identity)
+    
+    assertEquals(listaDePreciosOrdenados(0), 2.0, 0.1)
+    assertEquals(listaDePreciosOrdenados(1), 2.5, 0.1)
+    assertEquals(listaDePreciosOrdenados(2), 9.0, 0.1)
+}
+
+
+
+@Test
+def TestSobreCostoPromedioDeCadaTipoDeTransporte {
+   var query = new Statistics[ViajeSimple](ViajesSimples.allInstances)
+   var resultado = query
+     .select(identity)
+     .groupBy{viaje: ViajeSimple => viaje.transporte.getClass()}
+     .reduce{v => costoTotal(v) / v.size}
+     .apply
+     
+   println(resultado.toString)
+     
+   var listaDePreciosOrdenados = resultado.valuesIterator.toList.sortBy(identity)
+    
+   assertEquals(listaDePreciosOrdenados(0), 2.0, 0.1)
+   assertEquals(listaDePreciosOrdenados(1), 2.5, 0.1)
+   assertEquals(listaDePreciosOrdenados(2), 4.5, 0.1)
+     
+     
+}
+
+def costoTotal(l: List[_]) = l.asInstanceOf[List[ViajeSimple]].map(_.costoDelViaje).sum
   
 }

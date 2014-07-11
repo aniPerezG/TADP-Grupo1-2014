@@ -1,8 +1,12 @@
 package comoViajo
 
+import scala.collection.mutable.Buffer
+
+
 abstract class CaseTransporte {
   val paradas : Array[Direccion]
   val informador : InformacionTransportes
+  val compania : Compania
 
   def paradasDe(unRecorrido: Recorrido): Int = {
     val indiceOrigen = paradas.indexOf(unRecorrido.paradaDeSubida)
@@ -11,11 +15,13 @@ abstract class CaseTransporte {
   }
   
   def zonasDe(unRecorrido: Recorrido): Set[Zona] = {
-    var paradasDeUnRecorrido : Array[Direccion] = Array[Direccion]()
+    var paradasDeUnRecorrido : Buffer[Direccion] = Buffer[Direccion]()
     val indiceOrigen = paradas.indexOf(unRecorrido.paradaDeSubida)
-    //paradas.copyToArray(paradasDeUnRecorrido, indiceOrigen, this.paradasDe(unRecorrido)) ESTO NO ANDA MUCHACHOS!
-    val zonas = paradasDeUnRecorrido.map(_.zona).toSet
-    Set(PALERMO) //Esto hay que cambiarlo!!!!!!
+    val indiceLlegada = paradas.indexOf(unRecorrido.paradaDeBajada, indiceOrigen)
+
+    paradas.slice(indiceOrigen,indiceLlegada).copyToBuffer(paradasDeUnRecorrido)
+    paradasDeUnRecorrido.map(_.zona).toSet
+
   }
 
   def interseccionCon(otroTransporte: CaseTransporte): Direccion = this.paradas.intersect(otroTransporte.paradas).head
@@ -25,14 +31,14 @@ abstract class CaseTransporte {
 
 }
 
-case class SUBTE(paradas: Array[Direccion], informador: InformacionTransportes) extends CaseTransporte
+case class SUBTE(paradas: Array[Direccion], informador: InformacionTransportes, compania : Compania) extends CaseTransporte
 
-case class COLECTIVO(paradas: Array[Direccion], informador: InformacionTransportes) extends CaseTransporte {
+case class COLECTIVO(paradas: Array[Direccion], informador: InformacionTransportes, compania : Compania) extends CaseTransporte {
   def tiempoCombinacion(paradaBajada: Direccion, paradaSubida: Direccion): Double =
     (this.informador.distanciaAPie(paradaBajada, paradaSubida) / 100) * 2.5
 }
 
-case class TREN(paradas: Array[Direccion], informador: InformacionTransportes, tablaDePrecios: Map[Int, Double] = Map()) extends CaseTransporte {
+case class TREN(paradas: Array[Direccion], informador: InformacionTransportes, tablaDePrecios: Map[Int, Double] = Map(), compania : Compania) extends CaseTransporte {
   def costo(recorrido: Recorrido): Double = {
     var cantParadas = this.paradasDe(recorrido)
     var tuplaConElPosiblePrecioAPagar = tablaDePrecios.find { case (cantidadMaxima, precioAPagar) => cantidadMaxima >= cantParadas }

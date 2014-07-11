@@ -26,6 +26,7 @@ import comoViajo.MenorTiempo
 import comoViajo.PlanificadorViaje
 import comoViajo.PALERMO
 import comoViajo.Viaje
+import comoViajo.Compania
 
 class TestsPlanificador {
 
@@ -80,9 +81,14 @@ class TestsPlanificador {
   var viajeEnSubte : ViajeCompuesto = _
   var viajeCombinadoTrenYSubte : ViajeCompuesto = _
   var viajeCombinadoColectivoYTren : ViajeCompuesto = _
+  
+  var grupoPlaza : Compania = _
 
   @Before
   def setUp =  {
+    grupoPlaza = new Compania()
+
+    
     paradaColec1 = new Direccion("Onsari", 600, PALERMO)
     paradaColec2 = new Direccion("Onsari", 2500, PALERMO)
     paradaColec3 = new Direccion("Onsari", 3500, PALERMO)
@@ -139,10 +145,10 @@ class TestsPlanificador {
     tablaDePreciosDelTren = Map(3 -> 2.0, 5 -> 4.5, 7 -> 8.75)
 
     informador = new StubInformacionTransportes()
-    linea17 = COLECTIVO (paradasDeColec, informador)
-    lineaB = SUBTE(paradasDeSubteB, informador)
-    lineaD = SUBTE(paradasDeSubteD, informador)
-    sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren)
+    linea17 = COLECTIVO (paradasDeColec, informador, grupoPlaza)
+    lineaB = SUBTE(paradasDeSubteB, informador, grupoPlaza)
+    lineaD = SUBTE(paradasDeSubteD, informador, grupoPlaza)
+    sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren, grupoPlaza)
 
 
     recorridoEnColectivo = new Recorrido(paradaColec1, paradaColec2, linea17)

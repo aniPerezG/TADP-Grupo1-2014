@@ -19,6 +19,7 @@ import comoViajo.ViajeCompuesto
 import org.junit.Before
 import comoViajo.PALERMO
 import comoViajo.LABOCA
+import comoViajo.Compania
 
 class TestsTiempos {
   
@@ -58,9 +59,14 @@ class TestsTiempos {
   var lineaB: SUBTE = _
   var lineaD: SUBTE = _
   var sarmiento: TREN = _
+  
+  var grupoPlaza : Compania = _
 
   @Before 
   def setUp: Unit =  {
+    
+    grupoPlaza = new Compania()
+    
     paradaColec1 = new Direccion("Onsari", 600, LABOCA)
     paradaColec2 = new Direccion("Onsari", 2500, LABOCA)
     paradaColec3 = new Direccion("Onsari", 3500, LABOCA)
@@ -117,10 +123,10 @@ class TestsTiempos {
     tablaDePreciosDelTren = Map(3 -> 2.0, 5 -> 4.5, 7 -> 8.75)
 
     informador = new StubInformacionTransportes()
-    linea17 = COLECTIVO(paradasDeColec, informador)
-    lineaB = SUBTE(paradasDeSubteB, informador)
-    lineaD = SUBTE(paradasDeSubteD, informador)
-    sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren)
+    linea17 = COLECTIVO(paradasDeColec, informador,grupoPlaza)
+    lineaB = SUBTE(paradasDeSubteB, informador,grupoPlaza)
+    lineaD = SUBTE(paradasDeSubteD, informador,grupoPlaza)
+    sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren,grupoPlaza)
 
   }
 

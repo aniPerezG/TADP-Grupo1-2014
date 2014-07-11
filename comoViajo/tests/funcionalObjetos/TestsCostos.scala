@@ -20,6 +20,7 @@ import org.junit.Before
 import comoViajo.PALERMO
 import comoViajo.LABOCA
 import comoViajo.CENTRO
+import comoViajo.Compania
 
 class TestsCostos {
 
@@ -60,8 +61,12 @@ class TestsCostos {
   var lineaD: SUBTE = _
   var sarmiento: TREN = _
   
+  var grupoPlaza : Compania = _
+  
   @Before
   def setUp : Unit = {
+    grupoPlaza = new Compania()
+
     paradaColec1 = new Direccion("Onsari", 600, LABOCA)
     paradaColec2 = new Direccion("Onsari", 2500, LABOCA)
     paradaColec3 = new Direccion("Onsari", 3500, LABOCA)
@@ -118,10 +123,10 @@ class TestsCostos {
     tablaDePreciosDelTren = Map(3 -> 2.0, 5 -> 4.5, 7 -> 8.75)
 
     informador = new StubInformacionTransportes()
-    linea17 = COLECTIVO(paradasDeColec, informador)
-    lineaB = SUBTE(paradasDeSubteB, informador)
-    lineaD = SUBTE(paradasDeSubteD, informador)
-    sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren)
+    linea17 = COLECTIVO(paradasDeColec, informador, grupoPlaza)
+    lineaB = SUBTE(paradasDeSubteB, informador, grupoPlaza)
+    lineaD = SUBTE(paradasDeSubteD, informador, grupoPlaza)
+    sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren, grupoPlaza)
 
   }
 
@@ -131,7 +136,7 @@ class TestsCostos {
     var paradas: Array[Direccion] = Array(new Direccion("Corrientes", 41000, PALERMO), new Direccion("Corrientes", 4500, PALERMO))
     var primeraDire: Direccion = new Direccion("avellaneda", 923, PALERMO)
     var segundaDire: Direccion = new Direccion("scalabrini", 1600, PALERMO)
-    var unRecorrido: Recorrido = new Recorrido(primeraDire, segundaDire, SUBTE(paradas, informador))
+    var unRecorrido: Recorrido = new Recorrido(primeraDire, segundaDire, SUBTE(paradas, informador, grupoPlaza))
 
     assertEquals(4.5, unRecorrido.costoBase, 0.1)
 
@@ -169,7 +174,7 @@ class TestsCostos {
     tarjetaYendoAlTrabajo.laBoca :+= direccionDeLaBoca
     tarjetaYendoAlTrabajo.centro :+= direccionDelCentro
 
-    val linea24 = COLECTIVO(paradasBondi, informador)
+    val linea24 = COLECTIVO(paradasBondi, informador, grupoPlaza)
     val recorridoAlTrabajo = new Recorrido(direccionDeLaBoca, direccionDelCentro, linea24)
     val viajeAlLaburo = new ViajeSimple(recorridoAlTrabajo)
 
@@ -289,7 +294,7 @@ class TestsCostos {
     tarjetaYendoAlTrabajo.laBoca :+= direccionDeLaBoca
     tarjetaYendoAlTrabajo.centro :+= direccionDelCentro
 
-    val linea24 = COLECTIVO(paradasBondi, informador)
+    val linea24 = COLECTIVO(paradasBondi, informador, grupoPlaza)
     val recorridoAlTrabajo = new Recorrido(direccionDeLaBoca, direccionDelCentro, linea24)
     val recorridoEnTren = new Recorrido(paradaTren4, paradaTren5, sarmiento)
 

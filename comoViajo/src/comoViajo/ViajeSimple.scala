@@ -1,5 +1,6 @@
 package comoViajo
 
+
 class ViajeSimple(var recorrido: Recorrido) extends Viaje {
 
   def costoDelViaje(unaTarjeta: Tarjeta): Double = unaTarjeta.precioDeTarjeta(recorrido)
