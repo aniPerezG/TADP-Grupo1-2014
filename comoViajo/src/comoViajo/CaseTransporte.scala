@@ -17,11 +17,17 @@ abstract class CaseTransporte {
   def zonasDe(unRecorrido: Recorrido): Set[Zona] = {
     var paradasDeUnRecorrido : Buffer[Direccion] = Buffer[Direccion]()
     val indiceOrigen = paradas.indexOf(unRecorrido.paradaDeSubida)
+<<<<<<< HEAD
     val indiceLlegada = paradas.indexOf(unRecorrido.paradaDeBajada, indiceOrigen)
 
     paradas.slice(indiceOrigen,indiceLlegada).copyToBuffer(paradasDeUnRecorrido)
     paradasDeUnRecorrido.map(_.zona).toSet
 
+=======
+    paradas.copyToArray(paradasDeUnRecorrido, indiceOrigen, this.paradasDe(unRecorrido))
+    val zonas = paradasDeUnRecorrido.map(_.zona).toSet
+    zonas
+>>>>>>> origin/solucionFuncional
   }
 
   def interseccionCon(otroTransporte: CaseTransporte): Direccion = this.paradas.intersect(otroTransporte.paradas).head

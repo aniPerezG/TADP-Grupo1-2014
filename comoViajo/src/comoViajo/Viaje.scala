@@ -10,6 +10,5 @@ abstract class Viaje() {
   def tiempoDelViaje: Double
   
   def zonasPorLaQuePasa: Set[Zona]
-  
 
 }

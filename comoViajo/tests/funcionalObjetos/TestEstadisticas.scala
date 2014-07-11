@@ -25,11 +25,14 @@ import comoViajo.ViajeSimple
 import comoViajo.ViajeSimple
 import comoViajo.Statistics
 import comoViajo.PALERMO
+<<<<<<< HEAD
 import comoViajo.Statistics
 import comoViajo.Compania
 import comoViajo.GRUPOPLAZA
 import comoViajo.METROVIAS
 import comoViajo.TBA
+=======
+>>>>>>> origin/solucionFuncional
 
 class TestsEstadisticas {
 
@@ -134,6 +137,11 @@ class TestsEstadisticas {
     lineaD = SUBTE(paradasDeSubteD, informador,METROVIAS)
     sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren,TBA)
 
+  }
+
+  @Test
+  def TestEstadisticaViajesSimples {
+
     val recorridoEnColectivo = new Recorrido(paradaColec1, paradaColec2, linea17)
     val viajeEnColectivo = new ViajeSimple(recorridoEnColectivo)
 
@@ -142,6 +150,7 @@ class TestsEstadisticas {
 
     val recorridoEnTren = new Recorrido(paradaTren4, paradaTren5, sarmiento)
     val viajeEnTren = new ViajeSimple(recorridoEnTren)
+<<<<<<< HEAD
     
     val recorridoEnSubte2 = new Recorrido(paradaSubteB1, paradaSubteB5, lineaB)
     val viajeEnSubte2 = new ViajeSimple(recorridoEnSubte2) 
@@ -158,11 +167,19 @@ class TestsEstadisticas {
   def TestEstadisticaViajesSimples {
     
   
+=======
+
+    ViajesSimples.add(viajeEnColectivo)
+    ViajesSimples.add(viajeEnSubte)
+    ViajesSimples.add(viajeEnTren)
+
+>>>>>>> origin/solucionFuncional
     var ejemplo = new Statistics[ViajeSimple](ViajesSimples.allInstances)
     var query = ejemplo
       .select { viaje => viaje.costoDelViaje }
       .where { viaje => viaje.costoDelViaje > 3 }
-      .groupBy { viaje: ViajeSimple => viaje.recorrido.transporte.getClass() }
+      .groupBy { viaje: ViajeSimple => viaje.recorrido.transporte }
+      .reduce { viajes => viajes.size }
 
     println(query.apply.toString) //Solo para verlo!!
 
@@ -170,6 +187,7 @@ class TestsEstadisticas {
     
 
   }
+<<<<<<< HEAD
   
 @Test
 def TestProporcionDeViajesParaUnaZonaDada {
@@ -261,4 +279,7 @@ def TestSobreCostoPromedioDeCadaTipoDeTransporte {
 
 def costoTotal(l: List[_]) = l.asInstanceOf[List[ViajeSimple]].map(_.costoDelViaje).sum
   
+=======
+
+>>>>>>> origin/solucionFuncional
 }
