@@ -145,7 +145,7 @@ class TestsEstadisticas {
     ViajesSimples.add(viajeEnColectivo)
     ViajesSimples.add(viajeEnSubte)
     ViajesSimples.add(viajeEnSubte2)
-    ViajesSimples.add(viajeEnColectivo)
+    ViajesSimples.add(viajeEnTren)
 
   }
 
@@ -188,9 +188,9 @@ def TestProporcionDeViajesParaUnaZonaDada {
     
     var listaDePorcentajesOrdenados = resultado.valuesIterator.toList.sortBy(identity)
     
-    assertEquals(listaDePorcentajesOrdenados(0), 25.0, 0.1)
-    assertEquals(listaDePorcentajesOrdenados(1), 25.0, 0.1)
-    assertEquals(listaDePorcentajesOrdenados(2), 50.0, 0.1)
+    assertEquals(25.0, listaDePorcentajesOrdenados(0), 0.1)
+    assertEquals(25.0, listaDePorcentajesOrdenados(1), 0.1)
+    assertEquals(50.0, listaDePorcentajesOrdenados(2), 0.1)
     
 }
 
@@ -205,13 +205,12 @@ def TestDeFacturacionTotalSobreCadaCompania {
    .apply
   
     println(resultado.toString)
-    println(ViajesSimples.allInstances.toString())
     
     var listaDePreciosOrdenados = resultado.valuesIterator.toList.sortBy(identity)
     
-    assertEquals(listaDePreciosOrdenados(0), 2.0, 0.1)
-    assertEquals(listaDePreciosOrdenados(1), 2.5, 0.1)
-    assertEquals(listaDePreciosOrdenados(2), 9.0, 0.1)
+    assertEquals(2.0, listaDePreciosOrdenados(0), 0.1)
+    assertEquals(2.5, listaDePreciosOrdenados(1), 0.1)
+    assertEquals(9.0, listaDePreciosOrdenados(2), 0.1)
       
 }
 
@@ -229,9 +228,9 @@ def TestDeFacturacionTotalSobreCadaTipoDeTransporte {
     
     var listaDePreciosOrdenados = resultado.valuesIterator.toList.sortBy(identity)
     
-    assertEquals(listaDePreciosOrdenados(0), 2.0, 0.1)
-    assertEquals(listaDePreciosOrdenados(1), 2.5, 0.1)
-    assertEquals(listaDePreciosOrdenados(2), 9.0, 0.1)
+    assertEquals(2.0, listaDePreciosOrdenados(0), 0.1)
+    assertEquals(2.5, listaDePreciosOrdenados(1), 0.1)
+    assertEquals(9.0, listaDePreciosOrdenados(2), 0.1)
 }
 
 
@@ -249,9 +248,9 @@ def TestSobreCostoPromedioDeCadaTipoDeTransporte {
      
    var listaDePreciosOrdenados = resultado.valuesIterator.toList.sortBy(identity)
     
-   assertEquals(listaDePreciosOrdenados(0), 2.0, 0.1)
-   assertEquals(listaDePreciosOrdenados(1), 2.5, 0.1)
-   assertEquals(listaDePreciosOrdenados(2), 4.5, 0.1)
+   assertEquals(2.0, listaDePreciosOrdenados(0), 0.1)
+   assertEquals(2.5, listaDePreciosOrdenados(1), 0.1)
+   assertEquals(4.5, listaDePreciosOrdenados(2), 0.1)
      
      
 }
