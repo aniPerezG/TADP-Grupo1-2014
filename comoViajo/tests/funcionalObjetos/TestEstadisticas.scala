@@ -6,7 +6,6 @@ import comoViajo.SUBTE
 import comoViajo.COLECTIVO
 import comoViajo.TREN
 import comoViajo.Recorrido
-import comoViajo.Recorrido
 import comoViajo.Direccion
 import comoViajo.InformacionTransportes
 import comoViajo.InformacionTransportes
@@ -20,19 +19,12 @@ import comoViajo.ViajesSimples
 import org.junit.Before
 import scala.collection.mutable.ArrayBuffer
 import comoViajo.ViajeSimple
-import comoViajo.ViajeSimple
-import comoViajo.ViajeSimple
-import comoViajo.ViajeSimple
 import comoViajo.Statistics
 import comoViajo.PALERMO
-<<<<<<< HEAD
-import comoViajo.Statistics
 import comoViajo.Compania
 import comoViajo.GRUPOPLAZA
 import comoViajo.METROVIAS
 import comoViajo.TBA
-=======
->>>>>>> origin/solucionFuncional
 
 class TestsEstadisticas {
 
@@ -136,12 +128,7 @@ class TestsEstadisticas {
     lineaB = SUBTE(paradasDeSubteB, informador, METROVIAS)
     lineaD = SUBTE(paradasDeSubteD, informador,METROVIAS)
     sarmiento = TREN(paradasDeTren, informador, tablaDePreciosDelTren,TBA)
-
-  }
-
-  @Test
-  def TestEstadisticaViajesSimples {
-
+    
     val recorridoEnColectivo = new Recorrido(paradaColec1, paradaColec2, linea17)
     val viajeEnColectivo = new ViajeSimple(recorridoEnColectivo)
 
@@ -150,8 +137,7 @@ class TestsEstadisticas {
 
     val recorridoEnTren = new Recorrido(paradaTren4, paradaTren5, sarmiento)
     val viajeEnTren = new ViajeSimple(recorridoEnTren)
-<<<<<<< HEAD
-    
+
     val recorridoEnSubte2 = new Recorrido(paradaSubteB1, paradaSubteB5, lineaB)
     val viajeEnSubte2 = new ViajeSimple(recorridoEnSubte2) 
     
@@ -160,20 +146,14 @@ class TestsEstadisticas {
     ViajesSimples.add(viajeEnSubte)
     ViajesSimples.add(viajeEnSubte2)
     ViajesSimples.add(viajeEnColectivo)
-    
+
   }
+
 
   @Test
   def TestEstadisticaViajesSimples {
     
-  
-=======
 
-    ViajesSimples.add(viajeEnColectivo)
-    ViajesSimples.add(viajeEnSubte)
-    ViajesSimples.add(viajeEnTren)
-
->>>>>>> origin/solucionFuncional
     var ejemplo = new Statistics[ViajeSimple](ViajesSimples.allInstances)
     var query = ejemplo
       .select { viaje => viaje.costoDelViaje }
@@ -187,7 +167,6 @@ class TestsEstadisticas {
     
 
   }
-<<<<<<< HEAD
   
 @Test
 def TestProporcionDeViajesParaUnaZonaDada {
@@ -264,7 +243,7 @@ def TestSobreCostoPromedioDeCadaTipoDeTransporte {
      .select(identity)
      .groupBy{viaje: ViajeSimple => viaje.transporte.getClass()}
      .reduce{v => costoTotal(v) / v.size}
-     .apply
+     .apply 
      
    println(resultado.toString)
      
@@ -279,7 +258,5 @@ def TestSobreCostoPromedioDeCadaTipoDeTransporte {
 
 def costoTotal(l: List[_]) = l.asInstanceOf[List[ViajeSimple]].map(_.costoDelViaje).sum
   
-=======
 
->>>>>>> origin/solucionFuncional
 }
