@@ -13,9 +13,9 @@ abstract class CaseTransporte {
   def zonasDe(unRecorrido: Recorrido): Set[Zona] = {
     var paradasDeUnRecorrido : Array[Direccion] = Array[Direccion]()
     val indiceOrigen = paradas.indexOf(unRecorrido.paradaDeSubida)
-    //paradas.copyToArray(paradasDeUnRecorrido, indiceOrigen, this.paradasDe(unRecorrido)) ESTO NO ANDA MUCHACHOS!
+    paradas.copyToArray(paradasDeUnRecorrido, indiceOrigen, this.paradasDe(unRecorrido))
     val zonas = paradasDeUnRecorrido.map(_.zona).toSet
-    Set(PALERMO) //Esto hay que cambiarlo!!!!!!
+    zonas
   }
 
   def interseccionCon(otroTransporte: CaseTransporte): Direccion = this.paradas.intersect(otroTransporte.paradas).head
